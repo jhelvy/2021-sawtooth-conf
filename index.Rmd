@@ -4,9 +4,6 @@ output:
   html_document:
     theme: united
     highlight: tango
-    css:
-      - slides/css/lexis.css
-      - slides/css/lexis-fonts.css
 ---
 
 ```{r meta, echo=FALSE, eval=FALSE}

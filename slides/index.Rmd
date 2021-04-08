@@ -3,7 +3,10 @@ title: "The {logitr} R Package: Obtaining Willingness to Pay Estimates from Pref
 author: "John Paul Helveston"
 output:
   xaringan::moon_reader:
-    css: ["default", "css/lexis.css", "css/lexis-fonts.css", "css/custom.css"]
+    css:
+      - default
+      - css/lexis.css
+      - css/lexis-fonts.css
     lib_dir: libs
     nature:
       highlightStyle: github
