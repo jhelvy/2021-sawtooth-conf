@@ -3,7 +3,7 @@ title: "The {logitr} R Package: Obtaining Willingness to Pay Estimates from Pref
 author: "John Paul Helveston"
 output:
   xaringan::moon_reader:
-    css: ["default", "css/lexis.css", "css/lexis-fonts.css"]
+    css: ["default", "css/lexis.css", "css/lexis-fonts.css", "css/custom.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -15,6 +15,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(knitr)
+library(fontawesome)
+library(tidyverse)
+library(metathis)
+
 options(
   htmltools.dir.version = FALSE,
   knitr.table.format = "html",
@@ -67,9 +72,6 @@ knitr::opts_chunk$set(
     fig.path = "figs/",
     fig.retina = 3 # Better figure resolution
 )
-
-library(knitr)
-library(fontawesome)
 ```
 
 layout: true
@@ -84,12 +86,15 @@ https://github.com/jhelvy/2021-sawtooth-conf
 
 ---
 name: title-slide
-class: inverse, center, middle
-background-image: url(images/blue1.jpg)
+class: inverse, middle
+background-image: url(images/blue.jpg)
 
-# The {logitr} `r fa("r-project", fill = "white")` Package: Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay Space Utility Models
+## The {logitr} `r fa("r-project", fill = "white")` Package: <a href='https://jhelvy.github.io/logitr/'><img src='images/logitr-hex.png' align="right" height="250"/></a>
+## Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay<br>Space Utility Models
 
-.large[by John Paul Helveston]
+### by John Paul Helveston
+
+Sawtooth Software Conference: Turbo Choice Modeling Seminar
 
 April 20, 2021
 
@@ -105,19 +110,26 @@ April 20, 2021
 
 
 
+
+
 ---
-class: inverse, center, middle
-background-image: url(images/blackboard.jpg)
 
-# .font150[Thanks!]
+class: inverse
+background-image: url(images/blue.jpg)
 
-See the source for these slides at https://jhelvy.github.io/2021-sawtooth-conf
+<br>
+
+# .center[.font150[Thanks!]]
+
+### {logitr} documentation: https://jhelvy.github.io/logitr/
+
+### Source for slides: https://jhelvy.github.io/2021-sawtooth-conf
 
 .footer-large[
 .right[
-[@johnhelveston `r fa(name = "twitter", fill = "white")`](http://twitter.com/JohnHelveston)<br>
-[@jhelvy `r fa(name = "github", fill = "white")`](http://github.com/jhelvy)<br>
-[@jhelvy `r fa(name = "weixin", fill = "white")`](https://filedn.com/lYURdAnVcCykBHec07i0c6j/images/wechat.png)<br>
-[jhelvy.com `r fa(name = "link", fill = "white")`](https://www.jhelvy.com)<br>
-[jph@gwu.edu `r fa(name = "paper-plane", fill = "white")`](mailto:jph@gwu.edu)
+@johnhelveston `r fa(name = "twitter", fill = "white")`<br>
+@jhelvy `r fa(name = "github", fill = "white")`<br>
+@jhelvy `r fa(name = "weixin", fill = "white")`<br>
+jhelvy.com `r fa(name = "link", fill = "white")`<br>
+jph@gwu.edu `r fa(name = "paper-plane", fill = "white")`
 ]]

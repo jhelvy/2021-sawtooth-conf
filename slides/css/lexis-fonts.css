@@ -34,8 +34,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+blockquote {
+  border-left: solid 5px lightgray;
+  padding-left: 1em;
+  border: 3px solid var(--color-blue);
+  border-radius: 10px; /* Rounded edges */
+  background-color: var(--color-lightblue);
+  font-family: var(--font-header);
+  box-shadow: 4px 4px 8px 0 rgba(0,0,0,.2);
 }
 
 .fira {
@@ -82,7 +92,7 @@ h1, h2, h3, {
 }
 
 .remark-code {
-  font-size: 21px;
+  font-size: 20px;
 }
 
 .white {
@@ -100,8 +110,14 @@ h1, h2, h3, {
 .green {
   color: var(--color-green);
 }
+.darkgreen {
+  color: var(--color-darkgreen);
+}
 .blue {
   color: var(--color-blue);
+}
+.darkblue {
+  color: var(--color-darkblue);
 }
 .purple {
   color: var(--color-purple);
@@ -114,6 +130,9 @@ h1, h2, h3, {
 }
 
 /* Additional font sizes */
+.small {
+  font-size: 70%;
+}
 .large {
   font-size: 160%;
 }

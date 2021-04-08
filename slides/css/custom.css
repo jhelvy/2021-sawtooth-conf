@@ -1,0 +1,4 @@
+.inverse a, .inverse a:visited {
+  color: var(--color-white);
+  text-decoration: underline;
+}
