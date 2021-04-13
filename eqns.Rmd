@@ -1,0 +1,43 @@
+---
+title: ""
+documentclass: article
+geometry: margin=1in
+fontsize: 12pt
+output:
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"
+---
+
+```{r, child=here::here('eqns', 'utility.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityPreferenceScaled.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityPreference.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityWtpScaled.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityWtp.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'logitProbabilityMnl.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'iia.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'logitProbabilityMxl.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'logLikelihood.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityComponents.Rmd')}
+```
+
+```{r, child=here::here('eqns', 'utilityPreferenceObserved.Rmd')}
+```

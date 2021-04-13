@@ -1,0 +1,15 @@
+\begin{equation}
+\EQN{
+    P_{jc} =
+        \frac{
+            \mathrm{exp} \left( v_j \right)
+        }
+        {
+            \sum\limits_{k \in \mathcal{J}_c}
+            \mathrm{exp} \left( v_k \right)
+        },
+        \quad\quad
+        \forall c \in \left \{1,2,3,\dots C \right \}, \quad j \in \mathcal{J}_c
+}
+\label{eq:logitProbabilityMnl}
+\end{equation}

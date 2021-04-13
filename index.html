@@ -33,6 +33,7 @@
     <meta property="article:author" content="John Paul Helveston"/>
     <link rel="stylesheet" href="css/lexis.css" type="text/css" />
     <link rel="stylesheet" href="css/lexis-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -51,6 +52,7 @@ https://github.com/jhelvy/2021-sawtooth-conf
 &lt;/div&gt;
 
 ---
+
 name: title-slide
 class: inverse, middle
 background-image: url(images/blue.jpg)
@@ -68,7 +70,58 @@ April 20, 2021
 
 class: center, middle
 
-This is a placeholder for now - will update soon!
+# .blue[[What the respondent sees]]
+
+## **Which would you choose?**
+
+.cols4[
+## .center[$2.49]
+&lt;center&gt;
+&lt;img src="images/dannon.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.cols4[
+## .center[$2.99]
+&lt;center&gt;
+&lt;img src="images/yoplait.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.cols4[
+## .center[$1.99]
+&lt;center&gt;
+&lt;img src="images/hiland.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.cols4[
+## .center[$3.99]
+&lt;center&gt;
+&lt;img src="images/weight.png" width=300&gt;
+&lt;/center&gt;
+]
+
+---
+
+background-color: #fff
+
+# .center[.blue[[What the modeler sees]]]
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference.png" width="700"&gt;
+&lt;/center&gt;
+
+.code100[
+
+```
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; price   -0.388627 0.024269 -16.0131    0    ***
+#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+```
+]
 
 ---
 

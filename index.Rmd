@@ -7,6 +7,7 @@ output:
       - default
       - css/lexis.css
       - css/lexis-fonts.css
+      - css/custom.css
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -22,6 +23,7 @@ library(knitr)
 library(fontawesome)
 library(tidyverse)
 library(metathis)
+library(logitr)
 
 options(
   htmltools.dir.version = FALSE,
@@ -87,6 +89,7 @@ https://github.com/jhelvy/2021-sawtooth-conf
 </div>
 
 ---
+
 name: title-slide
 class: inverse, middle
 background-image: url(images/blue.jpg)
@@ -104,7 +107,54 @@ April 20, 2021
 
 class: center, middle
 
-This is a placeholder for now - will update soon!
+# .blue[[What the respondent sees]]
+
+## **Which would you choose?**
+
+.cols4[
+## .center[$2.49]
+<center>
+<img src="images/dannon.png" width=300>
+</center>
+]
+
+.cols4[
+## .center[$2.99]
+<center>
+<img src="images/yoplait.png" width=300>
+</center>
+]
+
+.cols4[
+## .center[$1.99]
+<center>
+<img src="images/hiland.png" width=300>
+</center>
+]
+
+.cols4[
+## .center[$3.99]
+<center>
+<img src="images/weight.png" width=300>
+</center>
+]
+
+---
+
+background-color: #fff
+
+# .center[.blue[[What the modeler sees]]]
+
+<center>
+<img src="images/utilityPreference.png" width="700">
+</center>
+
+.code100[
+```{r, echo=FALSE}
+mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
+getCoefTable(mnl_pref)
+```
+]
 
 ---
 

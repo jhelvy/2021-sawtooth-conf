@@ -1,0 +1,14 @@
+\begin{equation}
+\EQN{
+    \frac{P_{jc}}{P_{kc}} =
+        \frac{
+            \mathrm{exp} \left( v_j \right)
+        }
+        {
+            \mathrm{exp} \left( v_k \right)
+        },
+        \quad\quad
+        \forall c \in \left \{1,2,3,\dots C \right \}, \quad j \in \mathcal{J}_c
+}
+\label{eq:iia}
+\end{equation}
