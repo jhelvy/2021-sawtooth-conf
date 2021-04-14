@@ -11,9 +11,6 @@
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
-    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
-    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
     <script src="libs/shareon/shareon.min.js"></script>
     <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
@@ -70,9 +67,7 @@ April 20, 2021
 
 class: center, middle
 
-# .blue[[What the respondent sees]]
-
-## **Which would you choose?**
+# Which would you choose?
 
 .cols4[
 ## .center[$2.49]
@@ -106,22 +101,54 @@ class: center, middle
 
 background-color: #fff
 
-# .center[.blue[[What the modeler sees]]]
+# .center[Estimate marginal utilities]
+
+&lt;/br&gt;
 
 &lt;center&gt;
-&lt;img src="images/utilityPreference.png" width="700"&gt;
+&lt;img src="images/utilityPreference.png" width="800"&gt;
 &lt;/center&gt;
+
+--
 
 .code100[
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388627 0.024269 -16.0131    0    ***
-#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
-#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
-#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+#&gt; price   -0.388633 0.024269 -16.0133    0    ***
+#&gt; weight   3.116709 0.144968  21.4993    0    ***
+#&gt; yoplait  4.563103 0.186609  24.4528    0    ***
+#&gt; dannon   3.760797 0.145037  25.9299    0    ***
 ```
 ]
+
+---
+
+background-color: #fff
+
+# .center[Convert marginal utilities to WTPs]
+
+&lt;/br&gt;
+
+&lt;center&gt;
+&lt;img src="images/wtpComputed.png" width=250&gt;
+&lt;/center&gt;
+
+--
+
+.code100[
+
+```
+#&gt;          Estimate StdError   tStat pVal signif
+#&gt; weight   8.019670 0.763356 10.5058    0    ***
+#&gt; yoplait 11.741419 1.149419 10.2151    0    ***
+#&gt; dannon   9.676988 0.869633 11.1277    0    ***
+```
+]
+
+---
+
+
 
 ---
 

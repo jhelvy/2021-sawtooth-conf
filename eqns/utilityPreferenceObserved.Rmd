@@ -4,5 +4,4 @@
         \betaVec' \xVec_{j} +
         \alpha p_{j}
 }
-\label{eq:utilityPreferenceObserved}
 \end{equation}

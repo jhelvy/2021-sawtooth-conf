@@ -7,5 +7,4 @@
         \quad\quad
         \left(\frac{\varepsilon^{*}_{j}}{\alpha^{*}}\right) \sim \textrm{Gumbel} \left(0, \frac{\sigma^2}{(\alpha^{*})^2}\frac{\pi^2}{6} \right)
 }
-\label{eq:utilityWtpScaled}
 \end{equation}

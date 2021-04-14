@@ -11,5 +11,4 @@
         \quad\quad
         \forall c \in \left \{1,2,3,\dots C \right \}, \quad j \in \mathcal{J}_c
 }
-\label{eq:logitProbabilityMnl}
 \end{equation}

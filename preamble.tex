@@ -1,4 +1,3 @@
-
 \usepackage{upgreek}
 \usepackage{lipsum}
 \usepackage{environ}
@@ -17,6 +16,10 @@
 \newcommand{\xVec}{\mathrm{\mathbf{x}}}
 \newcommand{\XVec}{\mathrm{\mathbf{X}}}
 
-\NewEnviron{EQN}{% 
+\NewEnviron{eqnbig}{% 
     \scalebox{1.5}{$\BODY$} 
+} 
+
+\NewEnviron{eqnBIG}{% 
+    \scalebox{2}{$\BODY$} 
 } 

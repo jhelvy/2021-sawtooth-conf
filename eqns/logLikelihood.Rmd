@@ -6,5 +6,4 @@
 	\sum\limits_{j \in \mathcal{J}_c}
     y_{ijc} \ln P_{jc}
 }
-\label{eq:logLikelihood}
 \end{equation}

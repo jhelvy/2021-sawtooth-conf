@@ -9,35 +9,26 @@ output:
       in_header: "preamble.tex"
 ---
 
-```{r, child=here::here('eqns', 'utility.Rmd')}
-```
+\begin{equation}
+\eqnbig{
+    u_{j} =
+        \betaVec' \xVec_{j} +
+        \alpha p_{j} +
+        \varepsilon_{j}
+        \hspace{0.5in}
+        \varepsilon_{j} \sim \textrm{Gumbel}\left(0,\frac{\pi^2}{6}\right)
+}
+\label{eq:utilityPreference}
+\end{equation}
 
-```{r, child=here::here('eqns', 'utilityPreferenceScaled.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'utilityPreference.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'utilityWtpScaled.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'utilityWtp.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'logitProbabilityMnl.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'iia.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'logitProbabilityMxl.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'logLikelihood.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'utilityComponents.Rmd')}
-```
-
-```{r, child=here::here('eqns', 'utilityPreferenceObserved.Rmd')}
-```
+\begin{equation}
+\eqnBIG{
+    \hat{\omegaVec} = 
+        \frac{
+            \hat{\betaVec}_j
+        }{
+            - \hat{\alpha}_j
+        }
+}
+\label{eq:wtpComputed}
+\end{equation}
