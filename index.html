@@ -4,6 +4,7 @@
     <title>The {logitr} R Package: Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay Space Utility Models</title>
     <meta charset="utf-8" />
     <meta name="author" content="John Paul Helveston" />
+    <meta name="date" content="2021-04-20" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
@@ -28,8 +29,9 @@
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="article:author" content="John Paul Helveston"/>
-    <link rel="stylesheet" href="css/lexis-custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/lexis.css" type="text/css" />
     <link rel="stylesheet" href="css/lexis-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -148,7 +150,6 @@ class: center
 ## Alternative approach: **Estimate a WTP-Space Model**
 
 .leftcol30[
-&lt;/br&gt;
 ## Substitutions:
 
 &lt;center&gt;
@@ -201,12 +202,12 @@ class: center
 
 ---
 
-class: center, middle
+class: center, middle, inverse
 
 # What's wrong with
 
 &lt;center&gt;
-&lt;img src="images/wtpHatComputed.png" width=200&gt;&lt;/br&gt;
+&lt;img src="images/wtpHatComputedInverse.png" width=200&gt;&lt;/br&gt;
 &lt;/center&gt;
 
 # ?
@@ -252,7 +253,8 @@ Implies error around `\(\hat{\omega}\)` follows a&lt;/br&gt;[Cauchy distribution
 
 ---
 
-### .center[Preference space model produces unreasonably large variance in WTP]
+class: center
+### Preference space model produces unreasonably large variance in WTP
 
 .leftcol[
 &lt;center&gt;
@@ -273,6 +275,38 @@ WTP Space
 &lt;img src="images/wtpCompare.png" width=1000&gt;
 &lt;/center&gt;
 
+---
+
+# .center[What others have found]
+
+--
+
+.cols3[
+.center[WTP computed from preference space model has undefined moments]
+
+.font60[
+- Carson and Czajkowski (2019). "A new baseline model for estimating willingness to pay from discrete choice models." _Journal of Environmental Economics and Management_, 95:57–61.
+]]
+
+--
+
+.cols3[
+.center[Preference space model produces unreasonably large variance in WTP]
+
+.font60[
+- Train and Weeks (2005). "Discrete Choice Models in Preference and Willingness-to-Pay Space". In _Appl. Simul. Methods Environ. Resour. Econ._, Chapter 1, pages 1–16.
+- Sonnier, Ainslie, &amp; Otter (2007). "Heterogeneity distributions of willingness-to-pay in choice models." _Quant. Mark. Econ._, 5(3):313–331.
+]]
+
+--
+
+.cols3[
+.center[Neither space systematically predicts choice better]
+
+.font60[
+- Sonnier et al. (2007) and Train and Weeks (2005) found preference space model fit data better
+- Das et al. (2009) found nearly identical model fit on out-of-sample predictions with each model specification.
+]]
 
 
 
@@ -315,7 +349,6 @@ jph@gwu.edu &lt;svg style="height:0.8em;top:.04em;position:relative;fill:white;"
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
-"slideNumberFormat": "",
 "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

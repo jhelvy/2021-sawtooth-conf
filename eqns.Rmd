@@ -119,6 +119,14 @@ alphaNormal
 }
 \end{equation*}
 
+alphaLogNormal
+
+\begin{equation*}
+\eqnBIG{
+    \ln (\hat{\alpha}) \sim \mathcal{N} \left(\hat{\mu}, \hat{\sigma^2} \right)
+}
+\end{equation*}
+
 omegaNormal
 
 \begin{equation*}

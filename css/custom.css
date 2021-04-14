@@ -1,0 +1,13 @@
+
+.inverse a, .inverse a:visited {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.cols4 {
+  width: 24%;
+  float: left;
+  text-align: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}

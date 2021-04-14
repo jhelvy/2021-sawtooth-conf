@@ -101,5 +101,5 @@ wtpCompare <- ggplot(df) +
     hjust = 0
   )
 
-ggsave(here::here("images", "wtpCompare.png"),
-       wtpCompare, width = 9, height = 3.5)
+ggsave(here::here("images", "wtpCompare.pdf"),
+       wtpCompare, width = 9, height = 3.5, device = cairo_pdf)
