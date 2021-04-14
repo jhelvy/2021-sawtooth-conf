@@ -9,26 +9,113 @@ output:
       in_header: "preamble.tex"
 ---
 
-\begin{equation}
+utility
+
+\begin{equation*}
+\eqnbig{
+    u^*_{j} =
+        \betaVec^{*'} \xVec_{j} -
+        \alpha^{*} p_{j} +
+        \varepsilon^{*}_{j},
+        \quad\quad
+        \varepsilon^{*}_{j} \sim \textrm{Gumbel}\left(0, \sigma^2\frac{\pi^2}{6}\right)
+}
+\end{equation*}
+
+utilityPreferenceScaled
+
+\begin{equation*}
+\eqnbig{
+    \left(\frac{u^*_{j}}{\sigma}\right) =
+        \left( \frac{\betaVec^{*}}{\sigma} \right)' \xVec_{j} -
+        \left( \frac{\alpha^{*}}{\sigma} \right) p_{j} +
+        \left( \frac{\varepsilon^{*}_{j}}{\sigma} \right),
+        \quad\quad
+        \left( \frac{\varepsilon^{*}_{j}}{\sigma} \right) \sim \textrm{Gumbel}\left(0, \frac{\pi^2}{6}\right)
+}
+\end{equation*}
+
+utilityPreference
+
+\begin{equation*}
 \eqnbig{
     u_{j} =
-        \betaVec' \xVec_{j} +
+        \betaVec' \xVec_{j} -
         \alpha p_{j} +
-        \varepsilon_{j}
+        \varepsilon_{j},
         \hspace{0.5in}
         \varepsilon_{j} \sim \textrm{Gumbel}\left(0,\frac{\pi^2}{6}\right)
 }
-\label{eq:utilityPreference}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+utilityWtpScaled
+
+\begin{equation*}
+\eqnbig{
+    \left(\frac{u^*_{j}}{\alpha^*}\right) =
+        \left(\frac{\betaVec^{*}}{\alpha^{*}}\right)' \xVec_{j} -
+        p_{j} +
+        \left(\frac{\varepsilon^{*}_{j}}{\alpha^{*}}\right),
+        \quad\quad
+        \left(\frac{\varepsilon^{*}_{j}}{\alpha^{*}}\right) \sim \textrm{Gumbel} \left(0, \frac{\sigma^2}{(\alpha^{*})^2}\frac{\pi^2}{6} \right)
+}
+\end{equation*}
+
+utilityWtp
+
+\begin{equation*}
+\eqnbig{
+    u_{j} =
+        \lambda \left(
+            \omegaVec' \xVec_{j} - p_{j}
+            \right) +
+        \varepsilon_{j},
+        \hspace{0.5in}
+        \varepsilon_{j} \sim \textrm{Gumbel}\left(0, \frac{\pi^2}{6}\right)
+}
+\end{equation*}
+
+wtpHatComputed
+
+\begin{equation*}
 \eqnBIG{
-    \hat{\omegaVec} = 
+    \hat{\omegaVec} =
         \frac{
             \hat{\betaVec}_j
         }{
-            - \hat{\alpha}_j
+            \hat{\alpha}_j
         }
 }
-\label{eq:wtpComputed}
-\end{equation}
+\end{equation*}
+
+wtpComputed
+
+\begin{equation*}
+\eqnBIG{
+    \omegaVec =
+        \frac{
+            \betaVec_j
+        }{
+            \alpha_j
+        }
+    \hspace{0.5in}
+    \lambda = \alpha
+}
+\end{equation*}
+
+betaNormal
+
+\begin{equation*}
+\eqnBIG{
+    \hat{\betaVec} \sim \mathcal{N} \left(\muVec, \SigmaVec \right)
+}
+\end{equation*}
+
+alphaNormal
+
+\begin{equation*}
+\eqnBIG{
+    \hat{\alpha} \sim \mathcal{N} \left(\mu, \sigma^2 \right)
+}
+\end{equation*}
+

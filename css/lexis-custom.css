@@ -52,11 +52,6 @@ a > code {
 
 /*--- SLIDE PROPERTIES ---*/
 
-.inverse a, .inverse a:visited {
-  color: var(--color-dodgerblue );
-  text-decoration: underline;
-}
-
 .inverse a:hover, a:focus {
   color: var(--color-purple);
 }
@@ -70,15 +65,6 @@ a > code {
 /* Background color of container behind slide */
 .remark-slide-container {
   background-color: var(--color-gray);
-}
-
-/* Background color of slide */
-.remark-slide-content {
-  background-color: var(--color-graylight);
-  padding-top: 20px;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-bottom: 20px;
 }
 
 .title-slide {
@@ -406,4 +392,31 @@ img {
 
 .no-slide-number .remark-slide-number {
   display: none;
+}
+
+
+
+
+/*--- Custom changes to lexis theme ---*/
+
+.inverse a, .inverse a:visited {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.cols4 {
+  width: 24%;
+  float: left;
+  text-align: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Background color of slide */
+.remark-slide-content {
+  background-color: #ffffff;
+  padding-top: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 20px;
 }

@@ -28,9 +28,8 @@
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="article:author" content="John Paul Helveston"/>
-    <link rel="stylesheet" href="css/lexis.css" type="text/css" />
+    <link rel="stylesheet" href="css/lexis-custom.css" type="text/css" />
     <link rel="stylesheet" href="css/lexis-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -99,8 +98,6 @@ class: center, middle
 
 ---
 
-background-color: #fff
-
 # .center[Estimate marginal utilities]
 
 &lt;/br&gt;
@@ -115,23 +112,21 @@ background-color: #fff
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388633 0.024269 -16.0133    0    ***
-#&gt; weight   3.116709 0.144968  21.4993    0    ***
-#&gt; yoplait  4.563103 0.186609  24.4528    0    ***
-#&gt; dannon   3.760797 0.145037  25.9299    0    ***
+#&gt; price    0.388627 0.024269  16.0131    0    ***
+#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; dannon   0.644086 0.054360  11.8486    0    ***
 ```
 ]
 
 ---
 
-background-color: #fff
-
-# .center[Convert marginal utilities to WTPs]
+# .center[Convert marginal _utilities_ to marginal _WTPs_]
 
 &lt;/br&gt;
 
 &lt;center&gt;
-&lt;img src="images/wtpComputed.png" width=250&gt;
+&lt;img src="images/wtpHatComputed.png" width=250&gt;
 &lt;/center&gt;
 
 --
@@ -139,14 +134,131 @@ background-color: #fff
 .code100[
 
 ```
-#&gt;          Estimate StdError   tStat pVal signif
-#&gt; weight   8.019670 0.763356 10.5058    0    ***
-#&gt; yoplait 11.741419 1.149419 10.2151    0    ***
-#&gt; dannon   9.676988 0.869633 11.1277    0    ***
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; hiland  -8.019803 0.767927  10.4434    0    ***
+#&gt; yoplait  3.721723 0.158505 -23.4801    0    ***
+#&gt; dannon   1.657337 0.167230  -9.9105    0    ***
 ```
 ]
 
 ---
+
+class: center
+
+## Alternative approach: **Estimate a WTP-Space Model**
+
+.leftcol30[
+&lt;/br&gt;
+## Substitutions:
+
+&lt;center&gt;
+&lt;img src="images/wtpComputed.png" width=200&gt;&lt;/br&gt;
+&lt;img src="images/lambda.png" width=160&gt;
+&lt;/center&gt;
+]
+
+.rightcol70[
+## "Preference Space"
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference2.png" width="370"&gt;
+&lt;/center&gt;
+
+## "WTP Space"
+
+&lt;center&gt;
+&lt;img src="images/utilityWtp2.png" width=400&gt;
+&lt;/center&gt;
+]
+
+---
+
+class: center
+
+**_Quick aside about error scale_**
+
+&lt;center&gt;
+&lt;img src="images/utility.png" width=750&gt;
+&lt;/center&gt;
+
+--
+
+**Preference Space**
+
+&lt;center&gt;
+&lt;img src="images/utilityPreferenceScaled.png" width=800&gt;
+&lt;img src="images/utilityPreference.png" width=700&gt;
+&lt;/center&gt;
+
+--
+
+**WTP Space**
+
+&lt;center&gt;
+&lt;img src="images/utilityWtpScaled.png" width=800&gt;
+&lt;img src="images/utilityWtp.png" width=700&gt;
+&lt;/center&gt;
+
+---
+
+class: center, middle
+
+# What's wrong with
+
+&lt;center&gt;
+&lt;img src="images/wtpHatComputed.png" width=200&gt;&lt;/br&gt;
+&lt;/center&gt;
+
+# ?
+
+---
+
+## .center[Oops...WTP has undefined mean and variance]
+
+&lt;/br&gt;
+
+.leftcol40[
+&lt;center&gt;
+&lt;img src="images/wtpHatComputed.png" width=250&gt;
+&lt;/center&gt;
+]
+
+.rightcol60[
+Standard error on `\(\hat{\omega}\)` requires assumption that&lt;/br&gt; `\(\hat{\alpha}\)` &amp; `\(\hat{\beta}\)` have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
+
+Implies error around `\(\hat{\omega}\)` follows a&lt;/br&gt;[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
+]
+
+---
+
+## .center[Mixed logit: Large WTP variance across population]
+
+&lt;/br&gt;
+
+.leftcol40[
+&lt;center&gt;
+&lt;img src="images/wtpHatComputed.png" width=250&gt;
+&lt;/center&gt;
+]
+
+.rightcol60[
+Standard error on `\(\hat{\omega}\)` requires assumption that&lt;/br&gt; `\(\hat{\alpha}\)` &amp; `\(\hat{\beta}\)` have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
+
+Implies error around `\(\hat{\omega}\)` follows a&lt;/br&gt;[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

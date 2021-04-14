@@ -5,9 +5,8 @@ output:
   xaringan::moon_reader:
     css:
       - default
-      - css/lexis.css
+      - css/lexis-custom.css
       - css/lexis-fonts.css
-      - css/custom.css
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -139,8 +138,6 @@ class: center, middle
 
 ---
 
-background-color: #fff
-
 # .center[Estimate marginal utilities]
 
 </br>
@@ -160,14 +157,12 @@ getCoefTable(mnl_pref)
 
 ---
 
-background-color: #fff
-
-# .center[Convert marginal utilities to WTPs]
+# .center[Convert marginal _utilities_ to marginal _WTPs_]
 
 </br>
 
 <center>
-<img src="images/wtpComputed.png" width=250>
+<img src="images/wtpHatComputed.png" width=250>
 </center>
 
 --
@@ -175,11 +170,130 @@ background-color: #fff
 .code100[
 ```{r, echo=FALSE}
 wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
-wtp_mnl_pref[2:4,]
+result <- wtp_mnl_pref[2:4,]
+result[,1] <- result[,1]*-1
+result
 ```
 ]
 
 ---
+
+class: center
+
+## Alternative approach: **Estimate a WTP-Space Model**
+
+.leftcol30[
+</br>
+## Substitutions:
+
+<center>
+<img src="images/wtpComputed.png" width=200></br>
+<img src="images/lambda.png" width=160>
+</center>
+]
+
+.rightcol70[
+## "Preference Space"
+
+<center>
+<img src="images/utilityPreference2.png" width="370">
+</center>
+
+## "WTP Space"
+
+<center>
+<img src="images/utilityWtp2.png" width=400>
+</center>
+]
+
+---
+
+class: center
+
+**_Quick aside about error scale_**
+
+<center>
+<img src="images/utility.png" width=750>
+</center>
+
+--
+
+**Preference Space**
+
+<center>
+<img src="images/utilityPreferenceScaled.png" width=800>
+<img src="images/utilityPreference.png" width=700>
+</center>
+
+--
+
+**WTP Space**
+
+<center>
+<img src="images/utilityWtpScaled.png" width=800>
+<img src="images/utilityWtp.png" width=700>
+</center>
+
+---
+
+class: center, middle
+
+# What's wrong with
+
+<center>
+<img src="images/wtpHatComputed.png" width=200></br>
+</center>
+
+# ?
+
+---
+
+## .center[Oops...WTP has undefined mean and variance]
+
+</br>
+
+.leftcol40[
+<center>
+<img src="images/wtpHatComputed.png" width=250>
+</center>
+]
+
+.rightcol60[
+Standard error on $\hat{\omega}$ requires assumption that</br> $\hat{\alpha}$ & $\hat{\beta}$ have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
+
+Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
+]
+
+---
+
+## .center[Mixed logit: Large WTP variance across population]
+
+</br>
+
+.leftcol40[
+<center>
+<img src="images/wtpHatComputed.png" width=250>
+</center>
+]
+
+.rightcol60[
+Standard error on $\hat{\omega}$ requires assumption that</br> $\hat{\alpha}$ & $\hat{\beta}$ have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
+
+Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

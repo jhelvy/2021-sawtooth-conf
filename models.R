@@ -7,22 +7,19 @@ library('logitr')
 # Preview the yogurt data
 head(yogurt)
 
+yogurt_neg_price <- yogurt
+yogurt_neg_price$price <- -1*yogurt$price
+
 # ============================================================================
 # Estimate homogeneous MNL models
 
 # Run a MNL model in the Preference Space:
 mnl_pref <- logitr(
-  data       = yogurt,
+  data       = yogurt_neg_price,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('price', 'weight', 'yoplait', 'dannon')
+  parNames   = c('price', 'hiland', 'yoplait', 'dannon')
 )
-
-# Print a summary of the results:
-summary(mnl_pref)
-
-# Get the coefficients from the model:
-coef(mnl_pref)
 
 # Get the WTP implied from the preference space model
 wtp_mnl_pref <- wtp(mnl_pref, priceName = 'price')
@@ -33,7 +30,7 @@ mnl_wtp <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('weight', 'yoplait', 'dannon'),
+  parNames   = c('hiland', 'yoplait', 'dannon'),
   priceName  = 'price',
   modelSpace = 'wtp',
   options = list(
@@ -47,23 +44,7 @@ mnl_wtp <- logitr(
     startVals = wtp_mnl_pref$Estimate)
 )
 
-# Print a summary of all multistart runs and a summary of the best model:
-summary(mnl_wtp)
-
-# Print a summary of only the second model run (not the optimal solution):
-summary(mnl_wtp$models[[2]])
-
-# Print a summary of the best model:
-summary(mnl_wtp$bestModel)
-
-# Get the coefficients from the model:
-coef(mnl_wtp)
-
-# CHECKING FOR LOCAL MINIMA IN WTP SPACE MODELS:
-# Comparing the WTP and log-likelihood values between the equivalent models in
-# the preference space and WTP space is a helpful check for whether you have
-# reached a global solution in WTP space models, which have non-convex
-# log-likelihoods functions. This can be done using the wtpCompare function:
+# Checking for local minima in wtp space models:
 wtp_mnl_comparison <- wtpCompare(mnl_pref, mnl_wtp, priceName = 'price')
 wtp_mnl_comparison
 
@@ -77,3 +58,82 @@ saveRDS(wtp_mnl_pref,
 saveRDS(wtp_mnl_comparison,
         here::here('models', 'wtp_mnl_comparison.Rds'))
 
+# ============================================================================
+# Estimate heterogeneous MXL models
+
+mxl_pref1 <- logitr(
+  data       = yogurt,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('price', 'feat', 'hiland', 'yoplait', 'dannon'),
+  randPars   = c(feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+  options = list(numMultiStarts = 10)
+)
+
+mxl_pref2 <- logitr(
+  data       = yogurt,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('price', 'feat', 'hiland', 'yoplait', 'dannon'),
+  randPars   = c(
+    price = 'n', feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+  options = list(numMultiStarts = 10)
+)
+
+mxl_pref3 <- logitr(
+  data       = yogurt_neg_price,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('price', 'feat', 'hiland', 'yoplait', 'dannon'),
+  randPars   = c(
+    price = 'ln', feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+   options = list(numMultiStarts = 10)
+)
+
+mxl_wtp1 <- logitr(
+  data       = yogurt,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('feat', 'hiland', 'yoplait', 'dannon'),
+  priceName  = 'price',
+  randPars   = c(feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+  modelSpace = 'wtp',
+  options    = list(
+    keepAllRuns = TRUE,
+    numMultiStarts = 10,
+    startVals = wtp(mxl_pref1, 'price')$Estimate)
+)
+
+mxl_wtp2 <- logitr(
+  data       = yogurt,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('feat', 'hiland', 'yoplait', 'dannon'),
+  priceName  = 'price',
+  randPrice  = 'n',
+  randPars   = c(feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+  modelSpace = 'wtp',
+  options    = list(
+    numMultiStarts = 5,
+    startVals = wtp(mxl_pref2, 'price_mu')$Estimate)
+)
+
+mxl_wtp3 <- logitr(
+  data       = yogurt_neg_price,
+  choiceName = 'choice',
+  obsIDName  = 'obsID',
+  parNames   = c('feat', 'hiland', 'yoplait', 'dannon'),
+  priceName  = 'price',
+  randPrice  = 'ln',
+  randPars   = c(feat = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
+  modelSpace = 'wtp',
+  options    = list(numMultiStarts = 10, useAnalyticGrad = FALSE)
+)
+
+# Save results
+saveRDS(mxl_pref1, here::here('models', 'mxl_pref1.Rds'))
+saveRDS(mxl_pref2, here::here('models', 'mxl_pref2.Rds'))
+saveRDS(mxl_pref3, here::here('models', 'mxl_pref3.Rds'))
+saveRDS(mxl_wtp1,   here::here('models', 'mxl_wtp1.Rds'))
+saveRDS(mxl_wtp2,   here::here('models', 'mxl_wtp2.Rds'))
+saveRDS(mxl_wtp3,   here::here('models', 'mxl_wtp3.Rds'))
