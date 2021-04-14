@@ -107,7 +107,7 @@ betaNormal
 
 \begin{equation*}
 \eqnBIG{
-    \hat{\betaVec} \sim \mathcal{N} \left(\muVec, \SigmaVec \right)
+    \hat{\betaVec} \sim \mathcal{N} \left(\hat{\muVec}, \hat{\SigmaVec} \right)
 }
 \end{equation*}
 
@@ -115,7 +115,14 @@ alphaNormal
 
 \begin{equation*}
 \eqnBIG{
-    \hat{\alpha} \sim \mathcal{N} \left(\mu, \sigma^2 \right)
+    \hat{\alpha} \sim \mathcal{N} \left(\hat{\mu}, \hat{\sigma^2} \right)
 }
 \end{equation*}
 
+omegaNormal
+
+\begin{equation*}
+\eqnBIG{
+    \hat{\omegaVec} \sim \mathcal{N} \left(\hat{\muVec}, \hat{\SigmaVec} \right)
+}
+\end{equation*}

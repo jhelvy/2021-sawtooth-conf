@@ -250,23 +250,24 @@ class: center, middle
 
 ## .center[Oops...WTP has undefined mean and variance]
 
-</br>
-
-.leftcol40[
+.leftcol35[
+</br></br>
 <center>
-<img src="images/wtpHatComputed.png" width=250>
+<img src="images/wtpHatComputed.png" width=230>
 </center>
 ]
 
-.rightcol60[
-Standard error on $\hat{\omega}$ requires assumption that</br> $\hat{\alpha}$ & $\hat{\beta}$ have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
+.rightcol65[
+</br></br>
+$\hat{\alpha}$ & $\hat{\beta}$ are assumed to have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
 
 Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
 ]
 
 ---
 
-## .center[Mixed logit: Large WTP variance across population]
+## .center[**Mixed logit**]
+## .center[Unreasonably large WTP variance across population]
 
 </br>
 
@@ -277,11 +278,35 @@ Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://
 ]
 
 .rightcol60[
-Standard error on $\hat{\omega}$ requires assumption that</br> $\hat{\alpha}$ & $\hat{\beta}$ have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
-
-Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
+<center>
+<img src="images/betaNormal.png" width=380>
+</br>
+<img src="images/alphaNormal.png" width=380>
+</center>
 ]
 
+---
+
+### .center[Preference space model produces unreasonably large variance in WTP]
+
+.leftcol[
+<center>
+Preference Space
+<img src="images/betaNormal.png" width=200>
+</center>
+]
+
+.rightcol[
+<center>
+WTP Space
+<img src="images/omegaNormal.png" width=200>
+</center>
+</br>
+]
+
+<center>
+<img src="images/wtpCompare.png" width=1000>
+</center>
 
 
 

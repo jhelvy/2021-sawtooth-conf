@@ -86,7 +86,7 @@ wtpCompare <- ggplot(df) +
     strip.background = element_rect(fill = "grey90")
   ) +
   labs(
-    x = "Willingness to pay",
+    x = "Willingness to pay for Yoplait Brand ($)",
     y = "Density",
     fill = "Model parameterization:"
   ) +
