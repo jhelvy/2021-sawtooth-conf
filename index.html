@@ -310,16 +310,88 @@ WTP Space
 - **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
 ]]
 
+---
+
+class: center 
+
+# .fancy[Practical Considerations]
+
+### .purple[WTP space models produce immediately interpretable results&lt;/br&gt;(with correct standard errors)]
+
+--
+
+.leftcol[.code60[
+Unit: "Utility" (relative)
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference2.png" width="250"&gt;
+&lt;/center&gt;
 
 
+```
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; price    0.388627 0.024269  16.0131    0    ***
+#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+```
+]]
+
+--
+
+.rightcol[.code60[
+Units: $ (absolute)
+
+&lt;center&gt;
+&lt;img src="images/utilityWtp2.png" width="300"&gt;
+&lt;/center&gt;
 
 
+```
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; hiland  -8.019803 0.767927  10.4434    0    ***
+#&gt; yoplait  3.721723 0.158505 -23.4801    0    ***
+#&gt; dannon   1.657337 0.167230  -9.9105    0    ***
+```
+]]
 
+---
 
+class: center 
 
+# .fancy[Practical Considerations]
 
+### .purple[WTPs can be directly compared across different models&lt;/br&gt;(even estimates from different data sets)]
 
+--
 
+.leftcol[
+**Preference Space**
+
+Parameters proportional to `\(\sigma\)`
+
+&lt;center&gt;
+&lt;img src="images/utilityPreferenceScaled2.png" width=450&gt;
+&lt;img src="images/utilityPreference2.png" width=350&gt;
+&lt;/center&gt;
+]
+
+--
+
+.rightcol[
+**WTP Space**
+
+Parameters independent of `\(\sigma\)`
+
+&lt;center&gt;
+&lt;img src="images/utilityWtpScaled2.png" width=450&gt;
+&lt;img src="images/utilityWtp2.png" width=350&gt;
+&lt;/center&gt;
+]
+
+???
+
+In a preference space model, model parameters are proportional to the scale term which can vary across different data sets; as a result, preference space coefficients cannot be directly compared across different models estimated on different data sets. This poses a challenge for comparative studies or literature reviews that seek to compare outcomes on similar topics across multiple studies.
 
 
 

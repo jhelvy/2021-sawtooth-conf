@@ -345,16 +345,83 @@ WTP Space
 - **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
 ]]
 
+---
 
+class: center 
 
+# .fancy[Practical Considerations]
 
+### .purple[WTP space models produce immediately interpretable results</br>(with correct standard errors)]
 
+--
 
+.leftcol[.code60[
+Unit: "Utility" (relative)
 
+<center>
+<img src="images/utilityPreference2.png" width="250">
+</center>
 
+```{r, echo=FALSE}
+mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
+getCoefTable(mnl_pref)
+```
+]]
 
+--
 
+.rightcol[.code60[
+Units: $ (absolute)
 
+<center>
+<img src="images/utilityWtp2.png" width="300">
+</center>
+
+```{r, echo=FALSE}
+wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
+result <- wtp_mnl_pref[2:4,]
+result[,1] <- result[,1]*-1
+result
+```
+]]
+
+---
+
+class: center 
+
+# .fancy[Practical Considerations]
+
+### .purple[WTPs can be directly compared across different models</br>(even estimates from different data sets)]
+
+--
+
+.leftcol[
+**Preference Space**
+
+Parameters proportional to $\sigma$
+
+<center>
+<img src="images/utilityPreferenceScaled2.png" width=450>
+<img src="images/utilityPreference2.png" width=350>
+</center>
+]
+
+--
+
+.rightcol[
+**WTP Space**
+
+Parameters independent of $\sigma$
+
+<center>
+<img src="images/utilityWtpScaled2.png" width=450>
+<img src="images/utilityWtp2.png" width=350>
+</center>
+]
+
+???
+
+In a preference space model, model parameters are proportional to the scale term which can vary across different data sets; as a result, preference space coefficients cannot be directly compared across different models estimated on different data sets. This poses a challenge for comparative studies or literature reviews that seek to compare outcomes on similar topics across multiple studies.
 
 
 
