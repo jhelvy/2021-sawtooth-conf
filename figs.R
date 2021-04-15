@@ -2,6 +2,7 @@ library(tidyverse)
 library(logitr)
 library(cowplot)
 library(viridis)
+library(patchwork)
 
 set.seed(5678)
 
@@ -38,7 +39,7 @@ df <- pars %>%
   select(pref1, pref2, pref3, omega) %>%
   gather(key = "model", value = "wtp_pref", pref1:pref3) %>%
   mutate(model = fct_recode(model,
-    "price_fixed" = "pref1",
+    "price_f" = "pref1",
     "price_n" = "pref2",
     "price_ln" = "pref3"
   )) %>%
@@ -48,17 +49,25 @@ df <- pars %>%
     "WTP" = "omega",
   ))
 
-# Preview 
-df %>% 
-  filter(model == "price_ln") %>% 
-  ggplot() + 
+# Remove extreme values by dropping 0.1% and 99.9% quantiles
+df <- df %>%
+  group_by(space, model) %>%
+  mutate(
+    lower = quantile(wtp, 0.01),
+    upper = quantile(wtp, 0.99)) %>%
+  filter(wtp > lower, wtp < upper)
+
+# Preview
+df %>%
+  filter(model == "price_ln") %>%
+  ggplot() +
   geom_density(
     aes(x = wtp, y = ..density.., fill = space),
-    color = "black", size = 0.1, alpha = 0.42) + 
+    color = "black", size = 0.1, alpha = 0.42) +
   scale_x_continuous(limits = c(1, 4))
 
 # Make the plot
-base_plot <- function(data, xlimits, xbreaks) { 
+base_plot <- function(data, xlimits, xbreaks) {
   font <- "Fira Sans Condensed"
   plotColors <- c("grey42", "red")
   # Compute means and standard deviations
@@ -71,9 +80,6 @@ base_plot <- function(data, xlimits, xbreaks) {
       label_mean = paste0("Mean: ", round(mean, 2)),
       label_sd = paste0("SD:     ", round(sd, 3)))
   plot <- ggplot(data) +
-    geom_vline(data = stats,
-      mapping = aes(xintercept = mean, color = space),
-      size = 0.5, linetype = "dashed") +
     geom_density(
       aes(x = wtp, y = ..density.., fill = space),
       color = "black", size = 0.1, alpha = 0.42) +
@@ -88,29 +94,17 @@ base_plot <- function(data, xlimits, xbreaks) {
   return(plot)
 }
 
-df %>% 
-  filter(model == "price_fixed") %>% 
+plot_f <- df %>%
+  filter(model == "price_f") %>%
   base_plot(xlimits = c(3.6, 3.82), xbreaks = seq(3.6, 3.8, 0.5))
-
-df %>% 
-  filter(model == "price_n") %>% 
-  base_plot(xlimits = c(1, 7), xbreaks = seq(2, 6, 2))
-
-df %>% 
-  filter(model == "price_ln") %>% 
+plot_n <- df %>%
+  filter(model == "price_n") %>%
+  base_plot(xlimits = c(1.5, 6.5), xbreaks = seq(2, 6, 1))
+plot_ln <- df %>%
+  filter(model == "price_ln") %>%
   base_plot(xlimits = c(1, 4), xbreaks = seq(1, 4, 1))
 
-
-  # geom_text(
-  #   data = stats,
-  #   mapping = aes(x = x, y = y_mean, label = label_mean, color = space),
-  #   hjust = 0
-  # ) +
-  # geom_text(
-  #   data = stats,
-  #   mapping = aes(x = x, y = y_sd, label = label_sd, color = space),
-  #   hjust = 0
-  # )
+wtpCompare <- plot_f + plot_n + plot_ln
 
 ggsave(here::here("images", "wtpCompare.pdf"),
-       wtpCompare, width = 9, height = 3.5, device = cairo_pdf)
+       wtpCompare, width = 9, height = 3, device = cairo_pdf)

@@ -450,32 +450,6 @@ class: center
 
 ---
 
-# .center[**Caution**: WTP space models are not linear-in-parameters]
-
-## .center[Use a multistart optimization loop]
-
-.leftcol[
-### Preference Space
-
-**Convex** log-likelihood function `emo::ji("tada")`
-
-<center>
-<img src="images/utilityPreference2.png" width=400>
-</center>
-]
-
-.rightcol[
-### WTP Space
-
-**Non-convex** log-likelihood function `emo::ji("sad")`
-
-<center>
-<img src="images/utilityWtp2.png" width=400>
-</center>
-]
-
----
-
 class: center, middle, inverse
 
 # ...but most software is built for 
@@ -636,6 +610,24 @@ getCoefTable(mnl_pref)
 
 ---
 
+# .center[Get WTP from Preference Space model]
+
+</br>
+
+.leftcol35[
+<center>
+<img src="images/wtpHatComputed.png" width=300>
+</center>
+]
+
+.rightcol60[
+```{r}
+wtp(mnl_pref, priceName = "price")
+```
+]
+
+---
+
 # .center[Multinomial logit in **WTP Space**]
 
 .leftcol45[
@@ -667,10 +659,29 @@ summary(mnl_wtp$bestModel)
 ```
 ]]
 
+---
+
+class: center
+
+## **.red[Caution]**: WTP space models are not linear-in-parameters
+
+</br>
+
+.leftcol[
+### Preference Space
+
+**Convex** log-likelihood function 🎉
+]
+
+.rightcol[
+### WTP Space
+
+**Non-convex** log-likelihood function 😔
+]
 
 ---
 
-# .center[In WTP Space, Use a Multistart]
+# .center[Use a Multistart]
 
 .leftcol45[
 ```{r, eval=FALSE}
@@ -704,24 +715,6 @@ summary(mnl_wtp)
 
 ---
 
-# .center[Get WTP from Preference Space model]
-
-</br>
-
-.leftcol35[
-<center>
-<img src="images/wtpHatComputed.png" width=300>
-</center>
-]
-
-.rightcol60[
-```{r}
-wtp(mnl_pref, priceName = "price")
-```
-]
-
----
-
 # .center[Comparing WTP]
 
 ### .center[Compare WTP from Preference space and WTP space models]
@@ -736,7 +729,7 @@ wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
 
 # .center[Mixed logit in **Preference Space**]
 
-.leftcol45[
+.leftcol55[
 ```{r, eval=FALSE}
 library(logitr)
 
@@ -744,7 +737,11 @@ mxl_pref <- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c("price", "brand"))
+  parNames   = c(
+    'price', 'brand'), 
+  randPars   = c( #<<
+    hiland = 'n', yoplait = 'n', dannon = 'n'), #<<
+  options = list(numMultiStarts = 10)
 )
 
 summary(mxl_pref)
