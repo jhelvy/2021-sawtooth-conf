@@ -14,7 +14,7 @@ utility
 \begin{equation*}
 \eqnbig{
     u^*_{j} =
-        \betaVec^{*'} \xVec_{j} -
+        \betaVec^{*'} \xVec_{j} +
         \alpha^{*} p_{j} +
         \varepsilon^{*}_{j},
         \quad\quad
@@ -27,7 +27,7 @@ utilityPreferenceScaled
 \begin{equation*}
 \eqnbig{
     \left(\frac{u^*_{j}}{\sigma}\right) =
-        \left( \frac{\betaVec^{*}}{\sigma} \right)' \xVec_{j} -
+        \left( \frac{\betaVec^{*}}{\sigma} \right)' \xVec_{j} +
         \left( \frac{\alpha^{*}}{\sigma} \right) p_{j} +
         \left( \frac{\varepsilon^{*}_{j}}{\sigma} \right),
         \quad\quad
@@ -40,7 +40,7 @@ utilityPreference
 \begin{equation*}
 \eqnbig{
     u_{j} =
-        \betaVec' \xVec_{j} -
+        \betaVec' \xVec_{j} +
         \alpha p_{j} +
         \varepsilon_{j},
         \hspace{0.5in}
@@ -83,7 +83,7 @@ wtpHatComputed
         \frac{
             \hat{\betaVec}_j
         }{
-            \hat{\alpha}_j
+            - \hat{\alpha}_j
         }
 }
 \end{equation*}
@@ -96,10 +96,16 @@ wtpComputed
         \frac{
             \betaVec_j
         }{
-            \alpha_j
+            - \alpha_j
         }
-    \hspace{0.5in}
-    \lambda = \alpha
+}
+\end{equation*}
+
+lambda
+
+\begin{equation*}
+\eqnBIG{
+    \lambda = - \alpha
 }
 \end{equation*}
 

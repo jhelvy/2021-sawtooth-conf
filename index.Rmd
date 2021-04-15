@@ -1,5 +1,5 @@
 ---
-title: "The {logitr} R Package: Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay Space Utility Models"
+title: "The logitr R Package: Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay Space Utility Models"
 author: "John Paul Helveston"
 date: April 20, 2021
 institute: "The George Washington University | Dept. of Engineering Management and Systems Engineering"
@@ -77,6 +77,11 @@ knitr::opts_chunk$set(
     fig.path = "figs/",
     fig.retina = 3 # Better figure resolution
 )
+
+# Read in results from estimated models
+mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
+mnl_wtp <- readRDS(here::here("models", "mnl_wtp.Rds"))
+wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
 ```
 
 layout: true
@@ -95,7 +100,8 @@ name: title-slide
 class: inverse, middle
 background-image: url(images/blue.jpg)
 
-## The {logitr} `r fa("r-project", fill = "white")` Package: <a href='https://jhelvy.github.io/logitr/'><img src='images/logitr-hex.png' align="right" height="250"/></a>
+# The `logitr` `r fa("r-project", fill = "white")` Package: <a href='https://jhelvy.github.io/logitr/'><img src='images/logitr-hex.png' align="right" height="250"/></a>
+
 ## Obtaining Willingness to Pay Estimates from Preference Space and Willingness to Pay<br>Space Utility Models
 
 ### by John Paul Helveston
@@ -106,7 +112,7 @@ April 20, 2021
 
 ---
 
-class: center, middle
+class: center
 
 # Which would you choose?
 
@@ -152,7 +158,6 @@ class: center, middle
 
 .code100[
 ```{r, echo=FALSE}
-mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
 getCoefTable(mnl_pref)
 ```
 ]
@@ -171,7 +176,6 @@ getCoefTable(mnl_pref)
 
 .code100[
 ```{r, echo=FALSE}
-wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
 result <- wtp_mnl_pref[2:4,]
 result[,1] <- result[,1]*-1
 result
@@ -209,57 +213,48 @@ class: center
 
 ---
 
-class: center
-
-**_Quick aside about error scale_**
-
-<center>
-<img src="images/utility.png" width=750>
-</center>
-
---
-
-**Preference Space**
-
-<center>
-<img src="images/utilityPreferenceScaled.png" width=800>
-<img src="images/utilityPreference.png" width=700>
-</center>
-
---
-
-**WTP Space**
-
-<center>
-<img src="images/utilityWtpScaled.png" width=800>
-<img src="images/utilityWtp.png" width=700>
-</center>
-
----
-
 class: center, middle, inverse
 
-# What's wrong with
+# What's the difference?
 
+.leftcol[
+## Preference Space
+<center>
+<img src="images/utilityPreference2Inverse.png" width=500>
+</center>
+.font200[&darr;]
 <center>
 <img src="images/wtpHatComputedInverse.png" width=200></br>
 </center>
+]
 
-# ?
+.rightcol[
+## WTP Space
+</br></br>
+<center>
+<img src="images/utilityWtp2Inverse.png" width=520>
+</center>
+]
+
 
 ---
 
 ## .center[Oops...WTP has undefined mean and variance]
 
+</br>
+
 .leftcol35[
-</br></br>
 <center>
-<img src="images/wtpHatComputed.png" width=230>
+<img src="images/utilityPreference2.png" width=500>
+</center>
+.center[.font200[&darr;]]
+<center>
+<img src="images/wtpHatComputed.png" width=200></br>
 </center>
 ]
 
-.rightcol65[
-</br></br>
+.rightcol60[
+</br>
 $\hat{\alpha}$ & $\hat{\beta}$ are assumed to have asymptotically normal distributions .gray[(Bockstael and Strand, 1987)]
 
 Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution)
@@ -267,14 +262,20 @@ Implies error around $\hat{\omega}$ follows a</br>[Cauchy distribution](https://
 
 ---
 
-## .center[**Mixed logit**]
-## .center[Unreasonably large WTP variance across population]
+class: center 
+
+## **Mixed logit**:
+## Unreasonably large WTP variance across population
 
 </br>
 
 .leftcol40[
 <center>
-<img src="images/wtpHatComputed.png" width=250>
+<img src="images/utilityPreference2.png" width=500>
+</center>
+.center[.font200[&darr;]]
+<center>
+<img src="images/wtpHatComputed.png" width=200></br>
 </center>
 ]
 
@@ -351,7 +352,7 @@ class: center
 
 # .fancy[Practical Considerations]
 
-### .purple[WTP space models produce immediately interpretable results</br>(with correct standard errors)]
+> ### WTP space models produce immediately interpretable results</br>(with correct standard errors)
 
 --
 
@@ -363,7 +364,6 @@ Unit: "Utility" (relative)
 </center>
 
 ```{r, echo=FALSE}
-mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
 getCoefTable(mnl_pref)
 ```
 ]]
@@ -378,7 +378,6 @@ Units: $ (absolute)
 </center>
 
 ```{r, echo=FALSE}
-wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
 result <- wtp_mnl_pref[2:4,]
 result[,1] <- result[,1]*-1
 result
@@ -391,9 +390,43 @@ class: center
 
 # .fancy[Practical Considerations]
 
-### .purple[WTPs can be directly compared across different models</br>(even estimates from different data sets)]
+> ### WTPs can be directly compared across different models</br>(even estimates from different data sets)
+
+---
+
+class: center
+
+**_Quick aside about error scale_**
+
+<center>
+<img src="images/utility.png" width=750>
+</center>
 
 --
+
+**Preference Space**
+
+<center>
+<img src="images/utilityPreferenceScaled.png" width=800>
+<img src="images/utilityPreference.png" width=700>
+</center>
+
+--
+
+**WTP Space**
+
+<center>
+<img src="images/utilityWtpScaled.png" width=800>
+<img src="images/utilityWtp.png" width=700>
+</center>
+
+---
+
+class: center 
+
+# .fancy[Practical Considerations]
+
+> ### WTPs can be directly compared across different models</br>(even estimates from different data sets)
 
 .leftcol[
 **Preference Space**
@@ -419,9 +452,207 @@ Parameters independent of $\sigma$
 </center>
 ]
 
-???
+---
 
-In a preference space model, model parameters are proportional to the scale term which can vary across different data sets; as a result, preference space coefficients cannot be directly compared across different models estimated on different data sets. This poses a challenge for comparative studies or literature reviews that seek to compare outcomes on similar topics across multiple studies.
+class: center 
+
+# .fancy[Practical Considerations]
+
+> ### No theoretical basis for believing that marginal _utilities_ versus marginal _WTPs_ should follow standard distributions
+
+.leftcol[
+<center>
+<img src="images/betaNormal.png" width=350>
+</center>
+]
+
+.rightcol[
+<center>
+<img src="images/omegaNormal.png" width=350>
+</center>
+]
+
+---
+
+class: center, middle
+
+# Most software is built for 
+
+<center>
+<img src="images/utilityPreference2.png" width="370">
+</center>
+
+# not
+
+<center>
+<img src="images/utilityWtp2.png" width=400>
+</center>
+
+---
+
+class: center, middle, inverse 
+
+# `logitr` to the rescue!
+
+<center>
+<img src="images/logitr-hex.png" width=250>
+</center>
+
+---
+
+# The logitr `r fa("r-project", fill = "#165CAA")` Package <a href='https://jhelvy.github.io/logitr/'><img src='images/logitr-hex.png' align="right" height="240"/></a>
+
+### Estimation of multinomial and mixed logit models in with "Preference" space or "Willingness-to-pay" (WTP) space utility parameterizations.
+
+- Homogeneous multinomial logit models.
+- Heterogeneous mixed logit models (normal and log-normal parameter distributions).
+- Preference & WTP space utility parameterizations.
+- Optional multistart optimization loop.
+- Computing and comparing WTP from preference space and WTP space models.
+- Simulating expected shares.
+
+---
+
+# .center[Installation]
+
+.leftcol70[
+Version 0.1.0 can be installed from the CRAN:
+
+```{r, eval=FALSE}
+install.packages("logitr")
+```
+
+The development version can be installed from GitHub:
+
+```{r, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("jhelvy/logitr")
+```
+
+https://github.com/jhelvy/logitr
+]
+
+---
+
+# .center[Data format]
+
+Data must be arranged in a "long" format: 
+
+- Each row is an alternative from a choice observation. 
+- Choice observations do _not_ have to be symmetric. 
+
+Required variables: 
+
+- `choiceName`: A dummy variable for the chosen alternative (`1` or `0`).
+- `obsIDName`: A sequence of repeated numbers identifying each unique choice observation, e.g. `1, 1, 2, 2, 3, 3`.
+- `parNames`: Any other variables to use as model covariates. 
+
+---
+
+# .center[Data format]
+
+.leftcol[
+```{r, eval=FALSE}
+head(yogurt, 10)
+```
+```{r, echo=FALSE}
+yogurt %>% 
+  select(choice, obsID, alt, price, brand) %>% 
+  head(10) %>% 
+  as.data.frame()
+```
+]
+
+.rightcol[
+- `choiceName = "choice"`
+- `obsIDName = "obsID"`
+- `parNames = c("price", "brand")`
+]
+
+---
+
+# .center[Multinomial logit in **Preference Space**]
+
+.leftcol45[
+```{r, eval=FALSE}
+library(logitr)
+
+mnl_pref <- logitr(
+  data       = yogurt,
+  choiceName = "choice",
+  obsIDName  = "obsID",
+  parNames   = c("price", "brand"))
+)
+```
+]
+
+--
+
+.rightcol55[.code50[
+```{r}
+summary(mnl_pref)
+```
+]]
+
+---
+
+# .center[Multinomial logit in **WTP Space**]
+
+.leftcol45[
+```{r, eval=FALSE}
+library(logitr)
+
+mnl_wtp <- logitr(
+  data       = yogurt,
+  choiceName = "choice",
+  obsIDName  = "obsID",
+  parNames   = "brand", #<<
+  priceName  = "price",  #<<
+  modelSpace = "wtp") #<<
+)
+```
+]
+
+--
+
+.rightcol55[.code50[
+```{r, eval=FALSE}
+summary(mnl_wtp)
+```
+```{r, echo=FALSE}
+summary(mnl_wtp$bestModel)
+```
+]]
+
+---
+
+# .center[Get WTP from Preference Space model]
+
+</br>
+
+.leftcol35[
+<center>
+<img src="images/wtpHatComputed.png" width=300>
+</center>
+]
+
+.rightcol60[
+```{r}
+wtp(mnl_pref, priceName = "price")
+```
+]
+
+---
+
+# .center[Comparing WTP]
+
+### .center[Compare WTP from Preference space and WTP space models]
+
+.leftcol60[
+```{r}
+wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
+```
+]
 
 
 
@@ -434,7 +665,7 @@ background-image: url(images/blue.jpg)
 
 # .center[.font150[Thanks!]]
 
-### {logitr} documentation: https://jhelvy.github.io/logitr/
+### `logitr` documentation: https://jhelvy.github.io/logitr/
 
 ### Slides: https://jhelvy.github.io/2021-sawtooth-conf
 
@@ -446,3 +677,7 @@ background-image: url(images/blue.jpg)
 jhelvy.com `r fa(name = "link", fill = "white")`<br>
 jph@gwu.edu `r fa(name = "paper-plane", fill = "white")`
 ]]
+
+
+
+

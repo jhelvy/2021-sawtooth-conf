@@ -15,7 +15,7 @@ yogurt_neg_price$price <- -1*yogurt$price
 
 # Run a MNL model in the Preference Space:
 mnl_pref <- logitr(
-  data       = yogurt_neg_price,
+  data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
   parNames   = c('price', 'hiland', 'yoplait', 'dannon')
