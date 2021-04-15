@@ -4,12 +4,6 @@
 # Load logitr package
 library('logitr')
 
-# Preview the yogurt data
-head(yogurt)
-
-yogurt_neg_price <- yogurt
-yogurt_neg_price$price <- -1*yogurt$price
-
 # ============================================================================
 # Estimate homogeneous MNL models
 
@@ -20,10 +14,6 @@ mnl_pref <- logitr(
   obsIDName  = 'obsID',
   parNames   = c('price', 'hiland', 'yoplait', 'dannon')
 )
-
-# Get the WTP implied from the preference space model
-wtp_mnl_pref <- wtp(mnl_pref, priceName = 'price')
-wtp_mnl_pref
 
 # Run a MNL model in the WTP Space using a multistart:
 mnl_wtp <- logitr(
@@ -44,22 +34,17 @@ mnl_wtp <- logitr(
     startVals = wtp_mnl_pref$Estimate)
 )
 
-# Checking for local minima in wtp space models:
-wtp_mnl_comparison <- wtpCompare(mnl_pref, mnl_wtp, priceName = 'price')
-wtp_mnl_comparison
-
 # Save results
 saveRDS(mnl_pref,
         here::here('models', 'mnl_pref.Rds'))
 saveRDS(mnl_wtp,
         here::here('models', 'mnl_wtp.Rds'))
-saveRDS(wtp_mnl_pref,
-        here::here('models', 'wtp_mnl_pref.Rds'))
-saveRDS(wtp_mnl_comparison,
-        here::here('models', 'wtp_mnl_comparison.Rds'))
 
 # ============================================================================
 # Estimate heterogeneous MXL models
+
+yogurt_neg_price <- yogurt
+yogurt_neg_price$price <- -1*yogurt$price
 
 mxl_pref1 <- logitr(
   data       = yogurt,

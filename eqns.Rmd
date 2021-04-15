@@ -84,9 +84,9 @@ wtpHatComputed
 \eqnBIG{
     \hat{\omegaVec} =
         \frac{
-            \hat{\betaVec}_j
+            \hat{\betaVec}
         }{
-            - \hat{\alpha}_j
+            - \hat{\alpha}
         }
 }
 \end{equation*}
@@ -97,9 +97,9 @@ wtpComputed
 \eqnBIG{
     \omegaVec =
         \frac{
-            \betaVec_j
+            \betaVec
         }{
-            - \alpha_j
+            - \alpha
         }
 }
 \end{equation*}

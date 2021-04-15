@@ -1,9 +1,0 @@
-\begin{equation}
-\EQN{
-    L =
-	\sum\limits_{c = 1}^{C}
-	\sum\limits_{i \in \mathcal{N}_c}
-	\sum\limits_{j \in \mathcal{J}_c}
-    y_{ijc} \ln P_{jc}
-}
-\end{equation}

@@ -1,7 +1,0 @@
-\begin{equation}
-\EQN{
-    v_{j} =
-        \betaVec' \xVec_{j} +
-        \alpha p_{j}
-}
-\end{equation}

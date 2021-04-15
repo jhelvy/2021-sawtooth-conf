@@ -81,7 +81,6 @@ knitr::opts_chunk$set(
 # Read in results from estimated models
 mnl_pref <- readRDS(here::here("models", "mnl_pref.Rds"))
 mnl_wtp <- readRDS(here::here("models", "mnl_wtp.Rds"))
-wtp_mnl_pref <- readRDS(here::here("models", "wtp_mnl_pref.Rds"))
 ```
 
 layout: true
@@ -176,9 +175,8 @@ getCoefTable(mnl_pref)
 
 .code100[
 ```{r, echo=FALSE}
-result <- wtp_mnl_pref[2:4,]
-result[,1] <- result[,1]*-1
-result
+wtp_mnl_pref <- wtp(mnl_pref, priceName = 'price')
+wtp_mnl_pref[2:4,]
 ```
 ]
 
@@ -241,9 +239,9 @@ class: center, middle, inverse
 
 ## .center[Oops...WTP has undefined mean and variance]
 
-</br>
-
 .leftcol35[
+### .center[Preference Space]
+
 <center>
 <img src="images/utilityPreference2.png" width=500>
 </center>
@@ -315,35 +313,25 @@ WTP Space
 
 ---
 
-# .center[What others have found]
+# .center[I'm not the first to identify these issues]
 
 --
 
-.cols3[
+.leftcol[
 .center[WTP computed from preference space model has undefined moments]
 
-.font60[
+.font70[
 - **Carson and Czajkowski (2019)**. "A new baseline model for estimating willingness to pay from discrete choice models." _Journal of Environmental Economics and Management_, 95:57–61.
 ]]
 
 --
 
-.cols3[
+.rightcol[
 .center[Preference space model produces unreasonably large variance in WTP]
 
-.font60[
+.font70[
 - **Train and Weeks (2005)**. "Discrete Choice Models in Preference and Willingness-to-Pay Space". In _Appl. Simul. Methods Environ. Resour. Econ._, Chapter 1, pages 1–16.
 - **Sonnier, Ainslie, & Otter (2007)**. "Heterogeneity distributions of willingness-to-pay in choice models." _Quant. Mark. Econ._, 5(3):313–331.
-]]
-
---
-
-.cols3[
-.center[Neither space systematically predicts choice better]
-
-.font60[
-- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
-- **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
 ]]
 
 ---
@@ -378,9 +366,7 @@ Units: $ (absolute)
 </center>
 
 ```{r, echo=FALSE}
-result <- wtp_mnl_pref[2:4,]
-result[,1] <- result[,1]*-1
-result
+wtp_mnl_pref
 ```
 ]]
 
@@ -434,8 +420,8 @@ class: center
 Parameters proportional to $\sigma$
 
 <center>
-<img src="images/utilityPreferenceScaled2.png" width=450>
-<img src="images/utilityPreference2.png" width=350>
+<img src="images/utilityPreferenceScaled2.png" width=420>
+<img src="images/utilityPreference2.png" width=300>
 </center>
 ]
 
@@ -474,18 +460,28 @@ class: center
 
 ---
 
-class: center, middle
+# .center[.fancy[Practical Considerations]]
 
-# Most software is built for 
+> ### .center[Neither space systematically predicts choice better]
+
+- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
+
+- **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
+
+---
+
+class: center, middle, inverse
+
+# ...but most software is built for 
 
 <center>
-<img src="images/utilityPreference2.png" width="370">
+<img src="images/utilityPreference2Inverse.png" width="370">
 </center>
 
 # not
 
 <center>
-<img src="images/utilityWtp2.png" width=400>
+<img src="images/utilityWtp2Inverse.png" width=400>
 </center>
 
 ---

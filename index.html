@@ -115,7 +115,7 @@ class: center
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; price    0.388627 0.024269  16.0131    0    ***
+#&gt; price   -0.388627 0.024269 -16.0131    0    ***
 #&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
 #&gt; yoplait  1.446362 0.088698  16.3066    0    ***
 #&gt; dannon   0.644086 0.054360  11.8486    0    ***
@@ -138,9 +138,9 @@ class: center
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; hiland  -8.019803 0.767927  10.4434    0    ***
-#&gt; yoplait  3.721723 0.158505 -23.4801    0    ***
-#&gt; dannon   1.657337 0.167230  -9.9105    0    ***
+#&gt; hiland  -8.019803 0.460680 -17.4086    0    ***
+#&gt; yoplait  3.721723 0.439944   8.4595    0    ***
+#&gt; dannon   1.657337 0.183968   9.0088    0    ***
 ```
 ]
 
@@ -203,9 +203,9 @@ class: center, middle, inverse
 
 ## .center[Oops...WTP has undefined mean and variance]
 
-&lt;/br&gt;
-
 .leftcol35[
+### .center[Preference Space]
+
 &lt;center&gt;
 &lt;img src="images/utilityPreference2.png" width=500&gt;
 &lt;/center&gt;
@@ -277,35 +277,25 @@ WTP Space
 
 ---
 
-# .center[What others have found]
+# .center[I'm not the first to identify these issues]
 
 --
 
-.cols3[
+.leftcol[
 .center[WTP computed from preference space model has undefined moments]
 
-.font60[
+.font70[
 - **Carson and Czajkowski (2019)**. "A new baseline model for estimating willingness to pay from discrete choice models." _Journal of Environmental Economics and Management_, 95:57–61.
 ]]
 
 --
 
-.cols3[
+.rightcol[
 .center[Preference space model produces unreasonably large variance in WTP]
 
-.font60[
+.font70[
 - **Train and Weeks (2005)**. "Discrete Choice Models in Preference and Willingness-to-Pay Space". In _Appl. Simul. Methods Environ. Resour. Econ._, Chapter 1, pages 1–16.
 - **Sonnier, Ainslie, &amp; Otter (2007)**. "Heterogeneity distributions of willingness-to-pay in choice models." _Quant. Mark. Econ._, 5(3):313–331.
-]]
-
---
-
-.cols3[
-.center[Neither space systematically predicts choice better]
-
-.font60[
-- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
-- **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
 ]]
 
 ---
@@ -328,7 +318,7 @@ Unit: "Utility" (relative)
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; price    0.388627 0.024269  16.0131    0    ***
+#&gt; price   -0.388627 0.024269 -16.0131    0    ***
 #&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
 #&gt; yoplait  1.446362 0.088698  16.3066    0    ***
 #&gt; dannon   0.644086 0.054360  11.8486    0    ***
@@ -347,9 +337,10 @@ Units: $ (absolute)
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; hiland  -8.019803 0.767927  10.4434    0    ***
-#&gt; yoplait  3.721723 0.158505 -23.4801    0    ***
-#&gt; dannon   1.657337 0.167230  -9.9105    0    ***
+#&gt; lambda   0.388627 0.024299  15.9933    0    ***
+#&gt; hiland  -8.019803 0.460680 -17.4086    0    ***
+#&gt; yoplait  3.721723 0.439944   8.4595    0    ***
+#&gt; dannon   1.657337 0.183968   9.0088    0    ***
 ```
 ]]
 
@@ -403,8 +394,8 @@ class: center
 Parameters proportional to `\(\sigma\)`
 
 &lt;center&gt;
-&lt;img src="images/utilityPreferenceScaled2.png" width=450&gt;
-&lt;img src="images/utilityPreference2.png" width=350&gt;
+&lt;img src="images/utilityPreferenceScaled2.png" width=420&gt;
+&lt;img src="images/utilityPreference2.png" width=300&gt;
 &lt;/center&gt;
 ]
 
@@ -443,18 +434,28 @@ class: center
 
 ---
 
-class: center, middle
+# .center[.fancy[Practical Considerations]]
 
-# Most software is built for 
+&gt; ### .center[Neither space systematically predicts choice better]
+
+- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
+
+- **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
+
+---
+
+class: center, middle, inverse
+
+# ...but most software is built for 
 
 &lt;center&gt;
-&lt;img src="images/utilityPreference2.png" width="370"&gt;
+&lt;img src="images/utilityPreference2Inverse.png" width="370"&gt;
 &lt;/center&gt;
 
 # not
 
 &lt;center&gt;
-&lt;img src="images/utilityWtp2.png" width=400&gt;
+&lt;img src="images/utilityWtp2Inverse.png" width=400&gt;
 &lt;/center&gt;
 
 ---
@@ -582,13 +583,13 @@ summary(mnl_pref)
 #&gt; Model Space:    Preference
 #&gt; Model Run:          1 of 1
 #&gt; Iterations:             20
-#&gt; Elapsed Time:  0h:0m:0.12s
+#&gt; Elapsed Time:  0h:0m:0.15s
 #&gt; Exit Status:             3
 #&gt; Weights Used?:       FALSE
 #&gt; 
 #&gt; Model Coefficients: 
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; price    0.388627 0.024269  16.0131    0    ***
+#&gt; price   -0.388627 0.024269 -16.0131    0    ***
 #&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
 #&gt; yoplait  1.446362 0.088698  16.3066    0    ***
 #&gt; dannon   0.644086 0.054360  11.8486    0    ***
@@ -640,18 +641,18 @@ summary(mnl_wtp)
 #&gt; MODEL SUMMARY: 
 #&gt;                                  
 #&gt; Model Space:   Willingness-to-Pay
-#&gt; Model Run:                5 of 10
-#&gt; Iterations:                    31
-#&gt; Elapsed Time:         0h:0m:0.18s
+#&gt; Model Run:                8 of 10
+#&gt; Iterations:                    42
+#&gt; Elapsed Time:         0h:0m:0.24s
 #&gt; Exit Status:                    3
 #&gt; Weights Used?:              FALSE
 #&gt; 
 #&gt; Model Coefficients: 
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388631 0.024269  16.0133    0    ***
-#&gt; hiland  -8.019744 0.455553 -17.6044    0    ***
-#&gt; yoplait  3.721710 0.157656  23.6066    0    ***
-#&gt; dannon   1.657319 0.165715  10.0010    0    ***
+#&gt; lambda   0.388632 0.024269  16.0133    0    ***
+#&gt; hiland  -8.019735 0.455552 -17.6044    0    ***
+#&gt; yoplait  3.721706 0.157655  23.6066    0    ***
+#&gt; dannon   1.657317 0.165715  10.0010    0    ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
@@ -687,10 +688,10 @@ wtp(mnl_pref, priceName = "price")
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda  -0.388627 0.024310 -15.9864    0    ***
-#&gt; hiland   8.019803 0.770488  10.4087    0    ***
-#&gt; yoplait -3.721723 0.158951 -23.4144    0    ***
-#&gt; dannon  -1.657337 0.167317  -9.9054    0    ***
+#&gt; lambda   0.388627 0.024271  16.0123    0    ***
+#&gt; hiland  -8.019803 0.460884 -17.4009    0    ***
+#&gt; yoplait  3.721723 0.440258   8.4535    0    ***
+#&gt; dannon   1.657337 0.184959   8.9606    0    ***
 ```
 ]
 
@@ -707,12 +708,12 @@ wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
 ```
 
 ```
-#&gt;                 pref           wtp   difference
-#&gt; lambda     -0.388627     0.3886311   0.77725808
-#&gt; hiland      8.019803    -8.0197442 -16.03954716
-#&gt; yoplait    -3.721723     3.7217097   7.44343268
-#&gt; dannon     -1.657337     1.6573187   3.31465569
-#&gt; logLik  -2665.110192 -2665.1101915   0.00000002
+#&gt;                 pref           wtp difference
+#&gt; lambda      0.388627     0.3886316  4.600e-06
+#&gt; hiland     -8.019803    -8.0197345  6.848e-05
+#&gt; yoplait     3.721723     3.7217056 -1.740e-05
+#&gt; dannon      1.657337     1.6573174 -1.959e-05
+#&gt; logLik  -2665.110192 -2665.1101915  2.000e-08
 ```
 ]
 
