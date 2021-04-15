@@ -138,9 +138,9 @@ class: center
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; hiland  -8.019803 0.460680 -17.4086    0    ***
-#&gt; yoplait  3.721723 0.439944   8.4595    0    ***
-#&gt; dannon   1.657337 0.183968   9.0088    0    ***
+#&gt; hiland  -8.019803 0.460823 -17.4032    0    ***
+#&gt; yoplait  3.721723 0.439019   8.4774    0    ***
+#&gt; dannon   1.657337 0.184140   9.0004    0    ***
 ```
 ]
 
@@ -300,9 +300,15 @@ WTP Space
 
 ---
 
-class: center 
+class: center, middle, inverse
 
 # .fancy[Practical Considerations]
+
+---
+
+class: center 
+
+## .fancy[Practical Considerations]
 
 &gt; ### WTP space models produce immediately interpretable results&lt;/br&gt;(with correct standard errors)
 
@@ -337,10 +343,10 @@ Units: $ (absolute)
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388627 0.024299  15.9933    0    ***
-#&gt; hiland  -8.019803 0.460680 -17.4086    0    ***
-#&gt; yoplait  3.721723 0.439944   8.4595    0    ***
-#&gt; dannon   1.657337 0.183968   9.0088    0    ***
+#&gt; lambda   0.388627 0.024165  16.0822    0    ***
+#&gt; hiland  -8.019803 0.460823 -17.4032    0    ***
+#&gt; yoplait  3.721723 0.439019   8.4774    0    ***
+#&gt; dannon   1.657337 0.184140   9.0004    0    ***
 ```
 ]]
 
@@ -348,45 +354,17 @@ Units: $ (absolute)
 
 class: center 
 
-# .fancy[Practical Considerations]
+## .fancy[Practical Considerations]
 
 &gt; ### WTPs can be directly compared across different models&lt;/br&gt;(even estimates from different data sets)
 
----
-
-class: center
-
-**_Quick aside about error scale_**
+--
 
 &lt;center&gt;
-&lt;img src="images/utility.png" width=750&gt;
+&lt;img src="images/utility.png" width=700&gt;
 &lt;/center&gt;
 
 --
-
-**Preference Space**
-
-&lt;center&gt;
-&lt;img src="images/utilityPreferenceScaled.png" width=800&gt;
-&lt;img src="images/utilityPreference.png" width=700&gt;
-&lt;/center&gt;
-
---
-
-**WTP Space**
-
-&lt;center&gt;
-&lt;img src="images/utilityWtpScaled.png" width=800&gt;
-&lt;img src="images/utilityWtp.png" width=700&gt;
-&lt;/center&gt;
-
----
-
-class: center 
-
-# .fancy[Practical Considerations]
-
-&gt; ### WTPs can be directly compared across different models&lt;/br&gt;(even estimates from different data sets)
 
 .leftcol[
 **Preference Space**
@@ -416,7 +394,7 @@ Parameters independent of `\(\sigma\)`
 
 class: center 
 
-# .fancy[Practical Considerations]
+## .fancy[Practical Considerations]
 
 &gt; ### No theoretical basis for believing that marginal _utilities_ versus marginal _WTPs_ should follow standard distributions
 
@@ -434,7 +412,7 @@ class: center
 
 ---
 
-# .center[.fancy[Practical Considerations]]
+## .center[.fancy[Practical Considerations]]
 
 &gt; ### .center[Neither space systematically predicts choice better]
 
@@ -481,6 +459,8 @@ class: center, middle, inverse
 - Computing and comparing WTP from preference space and WTP space models.
 - Simulating expected shares.
 
+Source code: https://github.com/jhelvy/logitr
+
 ---
 
 # .center[Installation]
@@ -500,8 +480,6 @@ The development version can be installed from GitHub:
 # install.packages("remotes")
 remotes::install_github("jhelvy/logitr")
 ```
-
-https://github.com/jhelvy/logitr
 ]
 
 ---
@@ -565,16 +543,18 @@ mnl_pref &lt;- logitr(
   obsIDName  = "obsID",
   parNames   = c("price", "brand"))
 )
+
+*summary(mnl_pref)
 ```
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference2.png" width=300&gt;
+&lt;/center&gt;
 ]
 
 --
 
 .rightcol55[.code50[
-
-```r
-summary(mnl_pref)
-```
 
 ```
 #&gt; =================================================
@@ -583,7 +563,7 @@ summary(mnl_pref)
 #&gt; Model Space:    Preference
 #&gt; Model Run:          1 of 1
 #&gt; Iterations:             20
-#&gt; Elapsed Time:  0h:0m:0.15s
+#&gt; Elapsed Time:  0h:0m:0.14s
 #&gt; Exit Status:             3
 #&gt; Weights Used?:       FALSE
 #&gt; 
@@ -608,6 +588,44 @@ summary(mnl_pref)
 ```
 ]]
 
+
+---
+
+# .center[Multinomial logit in **Preference Space**]
+
+.leftcol45[
+
+```r
+library(logitr)
+
+mnl_pref &lt;- logitr(
+  data       = yogurt,
+  choiceName = "choice",
+  obsIDName  = "obsID",
+  parNames   = c("price", "brand"))
+)
+
+summary(mnl_pref)
+
+*getCoefTable(mnl_pref)
+```
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference2.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.rightcol55[.code50[
+
+```
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; price   -0.388627 0.024269 -16.0131    0    ***
+#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+```
+]]
+
 ---
 
 # .center[Multinomial logit in **WTP Space**]
@@ -625,34 +643,36 @@ mnl_wtp &lt;- logitr(
 * priceName  = "price",
 * modelSpace = "wtp")
 )
+
+summary(mnl_wtp)
 ```
+
+&lt;center&gt;
+&lt;img src="images/utilityWtp2.png" width=300&gt;
+&lt;/center&gt;
 ]
 
 --
 
 .rightcol55[.code50[
 
-```r
-summary(mnl_wtp)
-```
-
 ```
 #&gt; =================================================
 #&gt; MODEL SUMMARY: 
 #&gt;                                  
 #&gt; Model Space:   Willingness-to-Pay
-#&gt; Model Run:                8 of 10
-#&gt; Iterations:                    42
-#&gt; Elapsed Time:         0h:0m:0.24s
+#&gt; Model Run:                5 of 10
+#&gt; Iterations:                    37
+#&gt; Elapsed Time:         0h:0m:0.21s
 #&gt; Exit Status:                    3
 #&gt; Weights Used?:              FALSE
 #&gt; 
 #&gt; Model Coefficients: 
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388632 0.024269  16.0133    0    ***
-#&gt; hiland  -8.019735 0.455552 -17.6044    0    ***
-#&gt; yoplait  3.721706 0.157655  23.6066    0    ***
-#&gt; dannon   1.657317 0.165715  10.0010    0    ***
+#&gt; lambda   0.388631 0.024269  16.0132    0    ***
+#&gt; hiland  -8.019739 0.455554 -17.6044    0    ***
+#&gt; yoplait  3.721721 0.157656  23.6066    0    ***
+#&gt; dannon   1.657325 0.165716  10.0010    0    ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
@@ -688,10 +708,10 @@ wtp(mnl_pref, priceName = "price")
 
 ```
 #&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388627 0.024271  16.0123    0    ***
-#&gt; hiland  -8.019803 0.460884 -17.4009    0    ***
-#&gt; yoplait  3.721723 0.440258   8.4535    0    ***
-#&gt; dannon   1.657337 0.184959   8.9606    0    ***
+#&gt; lambda   0.388627 0.024307  15.9886    0    ***
+#&gt; hiland  -8.019803 0.460111 -17.4301    0    ***
+#&gt; yoplait  3.721723 0.440121   8.4561    0    ***
+#&gt; dannon   1.657337 0.184201   8.9974    0    ***
 ```
 ]
 
@@ -709,13 +729,96 @@ wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
 
 ```
 #&gt;                 pref           wtp difference
-#&gt; lambda      0.388627     0.3886316  4.600e-06
-#&gt; hiland     -8.019803    -8.0197345  6.848e-05
-#&gt; yoplait     3.721723     3.7217056 -1.740e-05
-#&gt; dannon      1.657337     1.6573174 -1.959e-05
-#&gt; logLik  -2665.110192 -2665.1101915  2.000e-08
+#&gt; lambda      0.388627     0.3886314  4.410e-06
+#&gt; hiland     -8.019803    -8.0197390  6.397e-05
+#&gt; yoplait     3.721723     3.7217205 -2.460e-06
+#&gt; dannon      1.657337     1.6573247 -1.233e-05
+#&gt; logLik  -2665.110192 -2665.1101915  1.000e-08
 ```
 ]
+
+---
+
+# .center[Mixed logit in **Preference Space**]
+
+.leftcol45[
+
+```r
+library(logitr)
+
+mxl_pref &lt;- logitr(
+  data       = yogurt,
+  choiceName = "choice",
+  obsIDName  = "obsID",
+  parNames   = c("price", "brand"))
+)
+
+summary(mxl_pref)
+```
+
+&lt;center&gt;
+&lt;img src="images/utilityPreference2.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.rightcol55[.code50[
+
+```
+#&gt; =================================================
+#&gt; SUMMARY OF ALL MULTISTART RUNS:
+#&gt; 
+#&gt;    run    logLik iterations status
+#&gt; 1    1 -2665.110         37      3
+#&gt; 2    2 -2665.110         46      3
+#&gt; 3    3 -2834.561         66      3
+#&gt; 4    4 -2665.110         36      3
+#&gt; 5    5 -2665.110         37      3
+#&gt; 6    6 -2665.110         33      3
+#&gt; 7    7 -2835.444         76      4
+#&gt; 8    8 -2834.276         79      3
+#&gt; 9    9 -2665.110         44      3
+#&gt; 10  10 -2665.110         36      3
+#&gt; ---
+#&gt; Use statusCodes() to view the meaning of the status codes
+#&gt; 
+#&gt; Below is the summary of run 5 of 10 multistart runs
+#&gt; (the run with the largest log-likelihood value)
+#&gt; =================================================
+#&gt; MODEL SUMMARY: 
+#&gt;                                  
+#&gt; Model Space:   Willingness-to-Pay
+#&gt; Model Run:                5 of 10
+#&gt; Iterations:                    37
+#&gt; Elapsed Time:         0h:0m:0.21s
+#&gt; Exit Status:                    3
+#&gt; Weights Used?:              FALSE
+#&gt; 
+#&gt; Model Coefficients: 
+#&gt;          Estimate StdError    tStat pVal signif
+#&gt; lambda   0.388631 0.024269  16.0132    0    ***
+#&gt; hiland  -8.019739 0.455554 -17.6044    0    ***
+#&gt; yoplait  3.721721 0.157656  23.6066    0    ***
+#&gt; dannon   1.657325 0.165716  10.0010    0    ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Model Fit Values: 
+#&gt;                                      
+#&gt; Log.Likelihood.         -2665.1101915
+#&gt; Null.Log.Likelihood.    -3343.7419990
+#&gt; AIC.                     5338.2204000
+#&gt; BIC.                     5361.3732000
+#&gt; McFadden.R2.                0.2029558
+#&gt; Adj..McFadden.R2            0.2017595
+#&gt; Number.of.Observations.  2412.0000000
+```
+]]
+
+
+
+
+
+
 
 
 
@@ -741,8 +844,39 @@ jhelvy.com &lt;svg style="height:0.8em;top:.04em;position:relative;fill:white;" 
 jph@gwu.edu &lt;svg style="height:0.8em;top:.04em;position:relative;fill:white;" viewBox="0 0 512 512"&gt;&lt;path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/&gt;&lt;/svg&gt;
 ]]
 
+---
 
+class: center, middle, inverse 
 
+# Extra slides
+
+---
+
+class: center
+
+**_A note about the error scale_**
+
+&lt;center&gt;
+&lt;img src="images/utility.png" width=750&gt;
+&lt;/center&gt;
+
+--
+
+**Preference Space**
+
+&lt;center&gt;
+&lt;img src="images/utilityPreferenceScaled.png" width=800&gt;
+&lt;img src="images/utilityPreference.png" width=700&gt;
+&lt;/center&gt;
+
+--
+
+**WTP Space**
+
+&lt;center&gt;
+&lt;img src="images/utilityWtpScaled.png" width=800&gt;
+&lt;img src="images/utilityWtp.png" width=700&gt;
+&lt;/center&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
