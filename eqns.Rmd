@@ -1,13 +1,16 @@
 ---
 title: ""
 documentclass: article
-geometry: margin=1in
+classoption: landscape
+geometry: margin=0.5in
 fontsize: 12pt
 output:
   pdf_document:
     includes:
       in_header: "preamble.tex"
 ---
+
+\center 
 
 utility
 
@@ -52,12 +55,12 @@ utilityWtpScaled
 
 \begin{equation*}
 \eqnbig{
-    \left(\frac{u^*_{j}}{\alpha^*}\right) =
-        \left(\frac{\betaVec^{*}}{\alpha^{*}}\right)' \xVec_{j} -
-        p_{j} +
-        \left(\frac{\varepsilon^{*}_{j}}{\alpha^{*}}\right),
+    \left(\frac{u^*_{j}}{- \alpha^*}\right) =
+        \left(\frac{\betaVec^{*}}{- \alpha^{*}}\right)' \xVec_{j} +
+        \left(\frac{\alpha^{*}}{- \alpha^{*}}\right) p_{j} +
+        \left(\frac{\varepsilon^{*}_{j}}{- \alpha^{*}}\right),
         \quad\quad
-        \left(\frac{\varepsilon^{*}_{j}}{\alpha^{*}}\right) \sim \textrm{Gumbel} \left(0, \frac{\sigma^2}{(\alpha^{*})^2}\frac{\pi^2}{6} \right)
+        \left(\frac{\varepsilon^{*}_{j}}{- \alpha^{*}}\right) \sim \textrm{Gumbel} \left(0, \frac{\sigma^2}{(- \alpha^{*})^2}\frac{\pi^2}{6} \right)
 }
 \end{equation*}
 
