@@ -241,6 +241,8 @@ class: center, middle, inverse
 
 ## .center[Oops...WTP has undefined mean and variance]
 
+</br>
+
 .leftcol35[
 ### .center[Preference Space]
 
@@ -294,23 +296,27 @@ class: center
 
 ### Preference space model produces unreasonably large variance in WTP
 
-.leftcol[
+.cols4[&zwj;]
+
+.cols4[
 <center>
-Preference Space
+<b>Preference Space</b>
 <img src="images/betaNormal.png" width=200>
 </center>
 ]
 
-.rightcol[
+.cols4[
 <center>
-WTP Space
+<b>WTP Space</b>
 <img src="images/omegaNormal.png" width=200>
 </center>
 </br>
 ]
 
+.cols4[&zwj;]
+
 <center>
-<img src="images/wtpCompare.png" width=1000>
+<img src="images/wtpCompare.png" width=900>
 </center>
 
 ---
@@ -352,13 +358,14 @@ class: center
 
 --
 
-.leftcol[.code60[
+.leftcol[
 Unit: "Utility" (relative)
 
 <center>
 <img src="images/utilityPreference2.png" width="250">
 </center>
 
+.code50[
 ```{r, echo=FALSE}
 getCoefTable(mnl_pref)
 ```
@@ -366,13 +373,14 @@ getCoefTable(mnl_pref)
 
 --
 
-.rightcol[.code60[
+.rightcol[
 Units: $ (absolute)
 
 <center>
 <img src="images/utilityWtp2.png" width="300">
 </center>
 
+.code50[
 ```{r, echo=FALSE}
 wtp_mnl_pref
 ```
@@ -395,9 +403,7 @@ class: center
 --
 
 .leftcol[
-**Preference Space**
-
-Parameters proportional to $\sigma$
+**Preference Space**</br>Parameters proportional to $\sigma$
 
 <center>
 <img src="images/utilityPreferenceScaled2.png" width=420>
@@ -408,9 +414,7 @@ Parameters proportional to $\sigma$
 --
 
 .rightcol[
-**WTP Space**
-
-Parameters independent of $\sigma$
+**WTP Space**</br>Parameters independent of $\sigma$
 
 <center>
 <img src="images/utilityWtpScaled2.png" width=450>
@@ -444,9 +448,11 @@ class: center
 
 > ### .center[Neither space systematically predicts choice better]
 
-- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
+.leftcol70[
+-  **Train and Weeks (2005)** and **Sonnier et al. (2007)** found preference space model fit data better.
 
 - **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
+]
 
 ---
 
@@ -576,55 +582,6 @@ summary(mnl_pref)
 ```
 ]]
 
-
----
-
-# .center[Multinomial logit in **Preference Space**]
-
-.leftcol45[
-```{r, eval=FALSE}
-library(logitr)
-
-mnl_pref <- logitr(
-  data       = yogurt,
-  choiceName = "choice",
-  obsIDName  = "obsID",
-  parNames   = c("price", "brand"))
-)
-
-summary(mnl_pref)
-```
-
-<center>
-<img src="images/utilityPreference2.png" width=300>
-</center>
-]
-
-.rightcol55[.code70[
-```{r}
-coefs <- getCoefTable(mnl_pref) #<<
-coefs
-```
-]]
-
----
-
-# .center[Get WTP from Preference Space model]
-
-</br>
-
-.leftcol35[
-<center>
-<img src="images/wtpHatComputed.png" width=300>
-</center>
-]
-
-.rightcol60[
-```{r}
-wtp(mnl_pref, priceName = "price")
-```
-]
-
 ---
 
 # .center[Multinomial logit in **WTP Space**]
@@ -702,21 +659,9 @@ summary(mnl_wtp)
 
 ---
 
-# .center[Comparing WTP]
-
-### .center[Compare WTP from Preference space and WTP space models]
-
-.leftcol60[
-```{r}
-wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
-```
-]
-
----
-
 # .center[Mixed logit in **Preference Space**]
 
-.leftcol60[
+.leftcol45[
 ```{r, eval=FALSE}
 library(logitr)
 
@@ -724,29 +669,31 @@ mxl_pref <- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c('price', 'brand'), 
-  randPars   = c(brand = 'n'), #<<
+  parNames   = c("price", "brand"), 
+  randPars   = c(brand = "n"), #<<
   options = list(numMultiStarts = 10)
 )
 
 summary(mxl_pref)
 ```
-]
 
-.rightcol40[
 <center>
-</br>
-<img src="images/utilityPreference2.png" width=400>
-</br>
-<img src="images/betaNormal.png" width=250>
+<img src="images/utilityPreference2.png" width=300>
+<img src="images/betaNormal.png" width=200>
 </center>
 ]
+
+.rightcol55[.code50[
+```{r, echo=FALSE}
+summary(mxl_pref$bestModel)
+```
+]]
 
 ---
 
 # .center[Mixed logit in **WTP Space**]
 
-.leftcol60[
+.leftcol45[
 ```{r, eval=FALSE}
 library(logitr)
 
@@ -754,32 +701,104 @@ mxl_wtp <- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c('hiland', 'yoplait', 'dannon'),
-  priceName  = 'price',
-  randPars   = c(brand = 'n'), #<<
-  modelSpace = 'wtp', #<<
+  parNames   = "brand",
+  priceName  = "price",
+  randPars   = c(brand = "n"), #<<
+  modelSpace = "wtp", #<<
   options = list(numMultiStarts = 10)
 )
 
 summary(mxl_wtp)
 ```
-]
 
-.rightcol40[
 <center>
-</br>
-<img src="images/utilityWtp2.png" width=400>
-</br>
-<img src="images/omegaNormal.png" width=250>
+<img src="images/utilityWtp2.png" width=300>
+<img src="images/omegaNormal.png" width=200>
 </center>
 ]
 
+.rightcol55[.code50[
+```{r, echo=FALSE}
+summary(mxl_wtp$bestModel)
+```
+]]
 
+---
 
+class: center, middle, inverse
 
+# .fancy[Convenient helper functions]
 
+---
 
+## .center[`wtp()`: Compute WTP from Preference Space model]
 
+</br>
+
+.leftcol30[
+<center>
+<img src="images/wtpHatComputed.png" width=300>
+</center>
+]
+
+.rightcol65[
+```{r}
+wtp(mnl_pref, priceName = "price")
+```
+]
+
+---
+
+### .center[`wtpCompare()`: Compare WTP from Preference & WTP space models]
+
+</br>
+
+.leftcol70[
+```{r}
+wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
+```
+]
+
+---
+
+### .center[`simulateShares()`: Expected shares for a set of alternatives]
+
+</br>
+
+.leftcol[
+Define a set of alternatives
+
+```{r, eval=FALSE}
+alts <- subset(
+  yogurt, obsID == 42, 
+  select = c('price', 'brand'))
+
+alts
+```
+```{r, echo=FALSE}
+alts <- as.data.frame(subset(
+  yogurt, obsID == 42, 
+  select = c('price', 'brand')))
+
+row.names(alts) <- seq(4)
+
+alts
+```
+]
+
+--
+
+.rightcol[
+Compute expected shares
+
+```{r}
+simulateShares(
+  model = mnl_pref, 
+  alts = alts, 
+  alpha = 0.025
+)
+```
+]
 
 ---
 

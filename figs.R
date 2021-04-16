@@ -20,15 +20,15 @@ pars_wtp <- coef(mxl_wtp)
 
 # Generate simulated data from the estimated parameters
 N <- 10^4
-draws <- as.matrix(randtoolbox::halton(N, normal = TRUE))
+draws <- randtoolbox::halton(N, normal = TRUE)
 pars <- tibble(
   alpha1 = rep(pars_pref1['price'], N),
   alpha2 = pars_pref2['price_mu'] + draws*pars_pref2['price_sigma'],
   alpha3 = exp(pars_pref3['price_mu'] + draws*pars_pref3['price_sigma']),
-  beta1 = pars_pref1['yoplait_mu'] + draws*pars_pref1['yoplait_sigma'],
-  beta2 = pars_pref2['yoplait_mu'] + draws*pars_pref2['yoplait_sigma'],
-  beta3 = pars_pref3['yoplait_mu'] + draws*pars_pref3['yoplait_sigma'],
-  omega = pars_wtp['yoplait_mu'] + draws*pars_wtp['yoplait_sigma'])
+  beta1 = pars_pref1['brandyoplait_mu'] + draws*pars_pref1['brandyoplait_sigma'],
+  beta2 = pars_pref2['brandyoplait_mu'] + draws*pars_pref2['brandyoplait_sigma'],
+  beta3 = pars_pref3['brandyoplait_mu'] + draws*pars_pref3['brandyoplait_sigma'],
+  omega = pars_wtp['brandyoplait_mu'] + draws*pars_wtp['brandyoplait_sigma'])
 
 df <- pars %>%
   mutate(

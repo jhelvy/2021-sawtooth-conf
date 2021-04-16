@@ -21,6 +21,7 @@ mnl_pref <- logitr(
 summary(mnl_pref)
 
 # Run a MNL model in the WTP Space using a multistart:
+wtp_mnl_pref <- wtp(mnl_pref, priceName = 'price')
 mnl_wtp <- logitr(
   data       = yogurt,
   choiceName = 'choice',
@@ -30,7 +31,8 @@ mnl_wtp <- logitr(
   modelSpace = 'wtp',
   options = list(
     numMultiStarts = 10,
-    keepAllRuns = TRUE)
+    keepAllRuns = TRUE, 
+    startVals = wtp_mnl_pref$Estimate)
 )
 
 # Save results

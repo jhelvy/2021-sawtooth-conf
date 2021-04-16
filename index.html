@@ -114,11 +114,11 @@ class: center
 .code100[
 
 ```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388627 0.024269 -16.0131    0    ***
-#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
-#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
-#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; price        -0.388627 0.024269 -16.0131    0    ***
+#&gt; brandhiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; brandyoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; branddannon   0.644086 0.054360  11.8486    0    ***
 ```
 ]
 
@@ -137,10 +137,10 @@ class: center
 .code100[
 
 ```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; hiland  -8.019803 0.459699 -17.4458    0    ***
-#&gt; yoplait  3.721723 0.439874   8.4609    0    ***
-#&gt; dannon   1.657337 0.183666   9.0236    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; brandhiland  -8.019803 0.461772 -17.3675    0    ***
+#&gt; brandyoplait  3.721723 0.441000   8.4393    0    ***
+#&gt; branddannon   1.657337 0.184540   8.9809    0    ***
 ```
 ]
 
@@ -203,6 +203,8 @@ class: center, middle, inverse
 
 ## .center[Oops...WTP has undefined mean and variance]
 
+&lt;/br&gt;
+
 .leftcol35[
 ### .center[Preference Space]
 
@@ -256,23 +258,27 @@ class: center
 
 ### Preference space model produces unreasonably large variance in WTP
 
-.leftcol[
+.cols4[&amp;zwj;]
+
+.cols4[
 &lt;center&gt;
-Preference Space
+&lt;b&gt;Preference Space&lt;/b&gt;
 &lt;img src="images/betaNormal.png" width=200&gt;
 &lt;/center&gt;
 ]
 
-.rightcol[
+.cols4[
 &lt;center&gt;
-WTP Space
+&lt;b&gt;WTP Space&lt;/b&gt;
 &lt;img src="images/omegaNormal.png" width=200&gt;
 &lt;/center&gt;
 &lt;/br&gt;
 ]
 
+.cols4[&amp;zwj;]
+
 &lt;center&gt;
-&lt;img src="images/wtpCompare.png" width=1000&gt;
+&lt;img src="images/wtpCompare.png" width=900&gt;
 &lt;/center&gt;
 
 ---
@@ -314,39 +320,41 @@ class: center
 
 --
 
-.leftcol[.code60[
+.leftcol[
 Unit: "Utility" (relative)
 
 &lt;center&gt;
 &lt;img src="images/utilityPreference2.png" width="250"&gt;
 &lt;/center&gt;
 
+.code50[
 
 ```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388627 0.024269 -16.0131    0    ***
-#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
-#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
-#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; price        -0.388627 0.024269 -16.0131    0    ***
+#&gt; brandhiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; brandyoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; branddannon   0.644086 0.054360  11.8486    0    ***
 ```
 ]]
 
 --
 
-.rightcol[.code60[
+.rightcol[
 Units: $ (absolute)
 
 &lt;center&gt;
 &lt;img src="images/utilityWtp2.png" width="300"&gt;
 &lt;/center&gt;
 
+.code50[
 
 ```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388627 0.024339  15.9673    0    ***
-#&gt; hiland  -8.019803 0.459699 -17.4458    0    ***
-#&gt; yoplait  3.721723 0.439874   8.4609    0    ***
-#&gt; dannon   1.657337 0.183666   9.0236    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; lambda        0.388627 0.024380  15.9401    0    ***
+#&gt; brandhiland  -8.019803 0.461772 -17.3675    0    ***
+#&gt; brandyoplait  3.721723 0.441000   8.4393    0    ***
+#&gt; branddannon   1.657337 0.184540   8.9809    0    ***
 ```
 ]]
 
@@ -367,9 +375,7 @@ class: center
 --
 
 .leftcol[
-**Preference Space**
-
-Parameters proportional to `\(\sigma\)`
+**Preference Space**&lt;/br&gt;Parameters proportional to `\(\sigma\)`
 
 &lt;center&gt;
 &lt;img src="images/utilityPreferenceScaled2.png" width=420&gt;
@@ -380,9 +386,7 @@ Parameters proportional to `\(\sigma\)`
 --
 
 .rightcol[
-**WTP Space**
-
-Parameters independent of `\(\sigma\)`
+**WTP Space**&lt;/br&gt;Parameters independent of `\(\sigma\)`
 
 &lt;center&gt;
 &lt;img src="images/utilityWtpScaled2.png" width=450&gt;
@@ -416,9 +420,11 @@ class: center
 
 &gt; ### .center[Neither space systematically predicts choice better]
 
-- **Sonnier et al. (2007)** and **Train and Weeks (2005)** found preference space model fit data better.
+.leftcol70[
+-  **Train and Weeks (2005)** and **Sonnier et al. (2007)** found preference space model fit data better.
 
 - **Das et al. (2009)** found nearly identical model fit on out-of-sample predictions with each model specification.
+]
 
 ---
 
@@ -563,16 +569,16 @@ mnl_pref &lt;- logitr(
 #&gt; Model Space:    Preference
 #&gt; Model Run:          1 of 1
 #&gt; Iterations:             20
-#&gt; Elapsed Time:  0h:0m:0.14s
+#&gt; Elapsed Time:  0h:0m:0.12s
 #&gt; Exit Status:             3
 #&gt; Weights Used?:       FALSE
 #&gt; 
 #&gt; Model Coefficients: 
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388627 0.024269 -16.0131    0    ***
-#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
-#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
-#&gt; dannon   0.644086 0.054360  11.8486    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; price        -0.388627 0.024269 -16.0131    0    ***
+#&gt; brandhiland  -3.116712 0.144968 -21.4993    0    ***
+#&gt; brandyoplait  1.446362 0.088698  16.3066    0    ***
+#&gt; branddannon   0.644086 0.054360  11.8486    0    ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
@@ -587,74 +593,6 @@ mnl_pref &lt;- logitr(
 #&gt; Number.of.Observations.  2412.0000000
 ```
 ]]
-
-
----
-
-# .center[Multinomial logit in **Preference Space**]
-
-.leftcol45[
-
-```r
-library(logitr)
-
-mnl_pref &lt;- logitr(
-  data       = yogurt,
-  choiceName = "choice",
-  obsIDName  = "obsID",
-  parNames   = c("price", "brand"))
-)
-
-summary(mnl_pref)
-```
-
-&lt;center&gt;
-&lt;img src="images/utilityPreference2.png" width=300&gt;
-&lt;/center&gt;
-]
-
-.rightcol55[.code70[
-
-```r
-*coefs &lt;- getCoefTable(mnl_pref)
-coefs
-```
-
-```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; price   -0.388627 0.024269 -16.0131    0    ***
-#&gt; hiland  -3.116712 0.144968 -21.4993    0    ***
-#&gt; yoplait  1.446362 0.088698  16.3066    0    ***
-#&gt; dannon   0.644086 0.054360  11.8486    0    ***
-```
-]]
-
----
-
-# .center[Get WTP from Preference Space model]
-
-&lt;/br&gt;
-
-.leftcol35[
-&lt;center&gt;
-&lt;img src="images/wtpHatComputed.png" width=300&gt;
-&lt;/center&gt;
-]
-
-.rightcol60[
-
-```r
-wtp(mnl_pref, priceName = "price")
-```
-
-```
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388627 0.024395  15.9307    0    ***
-#&gt; hiland  -8.019803 0.459944 -17.4365    0    ***
-#&gt; yoplait  3.721723 0.442034   8.4195    0    ***
-#&gt; dannon   1.657337 0.183886   9.0129    0    ***
-```
-]
 
 ---
 
@@ -691,18 +629,18 @@ summary(mnl_wtp)
 #&gt; MODEL SUMMARY: 
 #&gt;                                  
 #&gt; Model Space:   Willingness-to-Pay
-#&gt; Model Run:                5 of 10
-#&gt; Iterations:                    37
-#&gt; Elapsed Time:         0h:0m:0.21s
+#&gt; Model Run:                6 of 10
+#&gt; Iterations:                    36
+#&gt; Elapsed Time:         0h:0m:0.23s
 #&gt; Exit Status:                    3
 #&gt; Weights Used?:              FALSE
 #&gt; 
 #&gt; Model Coefficients: 
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388631 0.024269  16.0132    0    ***
-#&gt; hiland  -8.019739 0.455554 -17.6044    0    ***
-#&gt; yoplait  3.721721 0.157656  23.6066    0    ***
-#&gt; dannon   1.657325 0.165716  10.0010    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; lambda        0.388631 0.024269  16.0132    0    ***
+#&gt; brandhiland  -8.019752 0.455555 -17.6044    0    ***
+#&gt; brandyoplait  3.721705 0.157656  23.6065    0    ***
+#&gt; branddannon   1.657322 0.165715  10.0010    0    ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
@@ -762,37 +700,37 @@ summary(mnl_wtp)
 #&gt; SUMMARY OF ALL MULTISTART RUNS:
 #&gt; 
 #&gt;    run    logLik iterations status
-#&gt; 1    1 -2665.110         37      3
-#&gt; 2    2 -2665.110         46      3
-#&gt; 3    3 -2834.561         66      3
-#&gt; 4    4 -2665.110         36      3
-#&gt; 5    5 -2665.110         37      3
-#&gt; 6    6 -2665.110         33      3
-#&gt; 7    7 -2835.444         76      4
-#&gt; 8    8 -2834.276         79      3
-#&gt; 9    9 -2665.110         44      3
-#&gt; 10  10 -2665.110         36      3
+#&gt; 1    1 -2833.932         80      4
+#&gt; 2    2 -2665.110         34      3
+#&gt; 3    3 -2665.110         34      3
+#&gt; 4    4 -2665.110         32      3
+#&gt; 5    5 -2834.285         76      3
+#&gt; 6    6 -2665.110         36      3
+#&gt; 7    7 -2665.110         30      3
+#&gt; 8    8 -2834.989         69      3
+#&gt; 9    9 -2834.567         70      3
+#&gt; 10  10 -2834.183         75      4
 #&gt; ---
 #&gt; Use statusCodes() to view the meaning of the status codes
 #&gt; 
-#&gt; Below is the summary of run 5 of 10 multistart runs
+#&gt; Below is the summary of run 6 of 10 multistart runs
 #&gt; (the run with the largest log-likelihood value)
 #&gt; =================================================
 #&gt; MODEL SUMMARY: 
 #&gt;                                  
 #&gt; Model Space:   Willingness-to-Pay
-#&gt; Model Run:                5 of 10
-#&gt; Iterations:                    37
-#&gt; Elapsed Time:         0h:0m:0.21s
+#&gt; Model Run:                6 of 10
+#&gt; Iterations:                    36
+#&gt; Elapsed Time:         0h:0m:0.23s
 #&gt; Exit Status:                    3
 #&gt; Weights Used?:              FALSE
 #&gt; 
 #&gt; Model Coefficients: 
-#&gt;          Estimate StdError    tStat pVal signif
-#&gt; lambda   0.388631 0.024269  16.0132    0    ***
-#&gt; hiland  -8.019739 0.455554 -17.6044    0    ***
-#&gt; yoplait  3.721721 0.157656  23.6066    0    ***
-#&gt; dannon   1.657325 0.165716  10.0010    0    ***
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; lambda        0.388631 0.024269  16.0132    0    ***
+#&gt; brandhiland  -8.019752 0.455555 -17.6044    0    ***
+#&gt; brandyoplait  3.721705 0.157656  23.6065    0    ***
+#&gt; branddannon   1.657322 0.165715  10.0010    0    ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
@@ -810,31 +748,9 @@ summary(mnl_wtp)
 
 ---
 
-# .center[Comparing WTP]
-
-### .center[Compare WTP from Preference space and WTP space models]
-
-.leftcol60[
-
-```r
-wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
-```
-
-```
-#&gt;                 pref           wtp difference
-#&gt; lambda      0.388627     0.3886314  4.410e-06
-#&gt; hiland     -8.019803    -8.0197390  6.397e-05
-#&gt; yoplait     3.721723     3.7217205 -2.460e-06
-#&gt; dannon      1.657337     1.6573247 -1.233e-05
-#&gt; logLik  -2665.110192 -2665.1101915  1.000e-08
-```
-]
-
----
-
 # .center[Mixed logit in **Preference Space**]
 
-.leftcol60[
+.leftcol45[
 
 ```r
 library(logitr)
@@ -843,30 +759,68 @@ mxl_pref &lt;- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c('price', 'brand'), 
-* randPars   = c(
-*   hiland = 'n', yoplait = 'n', dannon = 'n'),
+  parNames   = c("price", "brand"), 
+* randPars   = c(brand = "n"),
   options = list(numMultiStarts = 10)
 )
 
 summary(mxl_pref)
 ```
-]
 
-.rightcol40[
 &lt;center&gt;
-&lt;/br&gt;
-&lt;img src="images/utilityPreference2.png" width=400&gt;
-&lt;/br&gt;
-&lt;img src="images/betaNormal.png" width=250&gt;
+&lt;img src="images/utilityPreference2.png" width=300&gt;
+&lt;img src="images/betaNormal.png" width=200&gt;
 &lt;/center&gt;
 ]
+
+.rightcol55[.code50[
+
+```
+#&gt; =================================================
+#&gt; MODEL SUMMARY: 
+#&gt;                          
+#&gt; Model Space:   Preference
+#&gt; Model Run:        5 of 10
+#&gt; Iterations:            43
+#&gt; Elapsed Time:   0h:0m:17s
+#&gt; Exit Status:            3
+#&gt; Weights Used?:      FALSE
+#&gt; 
+#&gt; Model Coefficients: 
+#&gt;                     Estimate StdError    tStat   pVal signif
+#&gt; price              -0.389810 0.044362  -8.7870 0.0000    ***
+#&gt; brandhiland_mu     -3.124798 0.243803 -12.8169 0.0000    ***
+#&gt; brandyoplait_mu     1.449109 0.140574  10.3085 0.0000    ***
+#&gt; branddannon_mu      0.655452 0.138290   4.7397 0.0000    ***
+#&gt; brandhiland_sigma   0.056181 1.177854   0.0477 0.9620       
+#&gt; brandyoplait_sigma  0.011127 0.388879   0.0286 0.9772       
+#&gt; branddannon_sigma   0.172808 2.458086   0.0703 0.9440       
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Model Fit Values: 
+#&gt;                                      
+#&gt; Log.Likelihood.         -2665.1077011
+#&gt; Null.Log.Likelihood.    -3343.7419990
+#&gt; AIC.                     5344.2154000
+#&gt; BIC.                     5384.7329000
+#&gt; McFadden.R2.                0.2029565
+#&gt; Adj..McFadden.R2            0.2008631
+#&gt; Number.of.Observations.  2412.0000000
+#&gt; 
+#&gt; Summary of 10k Draws for Random Coefficients: 
+#&gt;                               Min.    1st Qu.     Median       Mean    3rd Qu.      Max.
+#&gt; brandhiland (normal)  -3.343157864 -3.1627301 -3.1248413 -3.1248770 -3.0869654 -2.921920
+#&gt; brandyoplait (normal)  1.406487337  1.4415994  1.4491051  1.4490984  1.4566085  1.488621
+#&gt; branddannon (normal)  -0.009543227  0.5388061  0.6553104  0.6551855  0.7718474  1.259228
+```
+]]
 
 ---
 
 # .center[Mixed logit in **WTP Space**]
 
-.leftcol60[
+.leftcol45[
 
 ```r
 library(logitr)
@@ -875,33 +829,169 @@ mxl_wtp &lt;- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c('hiland', 'yoplait', 'dannon'),
-  priceName  = 'price',
-* randPars   = c(
-*   hiland = 'n', yoplait = 'n', dannon = 'n'),
-* modelSpace = 'wtp',
+  parNames   = "brand",
+  priceName  = "price",
+* randPars   = c(brand = "n"),
+* modelSpace = "wtp",
   options = list(numMultiStarts = 10)
 )
 
 summary(mxl_wtp)
 ```
-]
 
-.rightcol40[
 &lt;center&gt;
-&lt;/br&gt;
-&lt;img src="images/utilityWtp2.png" width=400&gt;
-&lt;/br&gt;
-&lt;img src="images/omegaNormal.png" width=250&gt;
+&lt;img src="images/utilityWtp2.png" width=300&gt;
+&lt;img src="images/omegaNormal.png" width=200&gt;
 &lt;/center&gt;
 ]
 
+.rightcol55[.code50[
+
+```
+#&gt; =================================================
+#&gt; MODEL SUMMARY: 
+#&gt;                                  
+#&gt; Model Space:   Willingness-to-Pay
+#&gt; Model Run:                6 of 10
+#&gt; Iterations:                    51
+#&gt; Elapsed Time:           0h:0m:27s
+#&gt; Exit Status:                    3
+#&gt; Weights Used?:              FALSE
+#&gt; 
+#&gt; Model Coefficients: 
+#&gt;                     Estimate StdError    tStat   pVal signif
+#&gt; lambda              0.391114 0.037629  10.3938 0.0000    ***
+#&gt; brandhiland_mu     -8.001475 0.579751 -13.8016 0.0000    ***
+#&gt; brandyoplait_mu     3.715322 0.181690  20.4487 0.0000    ***
+#&gt; branddannon_mu      1.682783 0.169619   9.9210 0.0000    ***
+#&gt; brandhiland_sigma   0.182098 2.623297   0.0694 0.9447       
+#&gt; brandyoplait_sigma  0.034227 0.975524   0.0351 0.9720       
+#&gt; branddannon_sigma   0.598862 3.586766   0.1670 0.8674       
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Model Fit Values: 
+#&gt;                                      
+#&gt; Log.Likelihood.         -2665.1066726
+#&gt; Null.Log.Likelihood.    -3343.7419990
+#&gt; AIC.                     5344.2133000
+#&gt; BIC.                     5384.7308000
+#&gt; McFadden.R2.                0.2029568
+#&gt; Adj..McFadden.R2            0.2008634
+#&gt; Number.of.Observations.  2412.0000000
+#&gt; 
+#&gt; Summary of 10k Draws for Random Coefficients: 
+#&gt;                             Min.   1st Qu.    Median      Mean   3rd Qu.      Max.
+#&gt; brandhiland (normal)  -8.7092358 -8.124422 -8.001614 -8.001730 -7.878848 -7.343892
+#&gt; brandyoplait (normal)  3.5842248  3.692225  3.715311  3.715291  3.738391  3.836856
+#&gt; branddannon (normal)  -0.6217451  1.278549  1.682292  1.681859  2.086149  3.775156
+```
+]]
+
+---
+
+class: center, middle, inverse
+
+# .fancy[Convenient helper functions]
+
+---
+
+## .center[`wtp()`: Compute WTP from Preference Space model]
+
+&lt;/br&gt;
+
+.leftcol30[
+&lt;center&gt;
+&lt;img src="images/wtpHatComputed.png" width=300&gt;
+&lt;/center&gt;
+]
+
+.rightcol65[
+
+```r
+wtp(mnl_pref, priceName = "price")
+```
+
+```
+#&gt;               Estimate StdError    tStat pVal signif
+#&gt; lambda        0.388627 0.024230  16.0393    0    ***
+#&gt; brandhiland  -8.019803 0.460116 -17.4300    0    ***
+#&gt; brandyoplait  3.721723 0.438991   8.4779    0    ***
+#&gt; branddannon   1.657337 0.183939   9.0103    0    ***
+```
+]
+
+---
+
+### .center[`wtpCompare()`: Compare WTP from Preference &amp; WTP space models]
+
+&lt;/br&gt;
+
+.leftcol70[
+
+```r
+wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
+```
+
+```
+#&gt;                      pref           wtp difference
+#&gt; lambda           0.388627     0.3886309  3.940e-06
+#&gt; brandhiland     -8.019803    -8.0197522  5.083e-05
+#&gt; brandyoplait     3.721723     3.7217045 -1.848e-05
+#&gt; branddannon      1.657337     1.6573215 -1.547e-05
+#&gt; logLik       -2665.110192 -2665.1101915  2.000e-08
+```
+]
+
+---
+
+### .center[`simulateShares()`: Expected shares for a set of alternatives]
+
+&lt;/br&gt;
+
+.leftcol[
+Define a set of alternatives
 
 
+```r
+alts &lt;- subset(
+  yogurt, obsID == 42, 
+  select = c('price', 'brand'))
+
+alts
+```
+
+```
+#&gt;   price   brand
+#&gt; 1   6.3  dannon
+#&gt; 2   6.1  hiland
+#&gt; 3   7.9  weight
+#&gt; 4  11.5 yoplait
+```
+]
+
+--
+
+.rightcol[
+Compute expected shares
 
 
+```r
+simulateShares(
+  model = mnl_pref, 
+  alts = alts, 
+  alpha = 0.025
+)
+```
 
-
+```
+#&gt;        share_mean  share_low share_high
+#&gt; Alt: 1 0.62391502 0.56615070 0.67466090
+#&gt; Alt: 2 0.01568871 0.01210113 0.02011584
+#&gt; Alt: 3 0.17593678 0.16127684 0.18999846
+#&gt; Alt: 4 0.18445949 0.13460611 0.24531509
+```
+]
 
 ---
 
