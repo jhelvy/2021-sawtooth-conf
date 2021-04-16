@@ -315,6 +315,8 @@ class: center
 
 .cols4[&zwj;]
 
+--
+
 <center>
 <img src="images/wtpCompare.png" width=900>
 </center>
@@ -683,6 +685,8 @@ summary(mxl_pref)
 </center>
 ]
 
+--
+
 .rightcol55[.code50[
 ```{r, echo=FALSE}
 summary(mxl_pref$bestModel)
@@ -716,6 +720,8 @@ summary(mxl_wtp)
 <img src="images/omegaNormal.png" width=200>
 </center>
 ]
+
+--
 
 .rightcol55[.code50[
 ```{r, echo=FALSE}
@@ -776,6 +782,9 @@ alts <- subset(
 alts
 ```
 ```{r, echo=FALSE}
+yogurt$brand <- factor(yogurt$brand, levels = c(
+  "weight", "hiland", "yoplait", "dannon"))
+
 alts <- as.data.frame(subset(
   yogurt, obsID == 42, 
   select = c('price', 'brand')))
