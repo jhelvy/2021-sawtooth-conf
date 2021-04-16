@@ -4,6 +4,9 @@
 # Load logitr package
 library('logitr')
 
+yogurt$brand <- factor(yogurt$brand, levels = c(
+  "weight", "hiland", "yoplait", "dannon"))
+
 # ============================================================================
 # Estimate homogeneous MNL models
 
@@ -12,26 +15,22 @@ mnl_pref <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('price', 'hiland', 'yoplait', 'dannon')
+  parNames   = c('price', 'brand')
 )
+
+summary(mnl_pref)
 
 # Run a MNL model in the WTP Space using a multistart:
 mnl_wtp <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('hiland', 'yoplait', 'dannon'),
+  parNames   = 'brand',
   priceName  = 'price',
   modelSpace = 'wtp',
   options = list(
-    # Since WTP space models are non-convex, run a multistart:
     numMultiStarts = 10,
-    # If you want to view the results from each multistart run,
-    # set keepAllRuns=TRUE:
-    keepAllRuns = TRUE,
-    # Use the computed WTP from the preference space model as the starting
-    # values for the first run:
-    startVals = wtp_mnl_pref$Estimate)
+    keepAllRuns = TRUE)
 )
 
 # Save results
@@ -50,38 +49,42 @@ mxl_pref1 <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('price', 'hiland', 'yoplait', 'dannon'),
-  randPars   = c(hiland = 'n', yoplait = 'n', dannon = 'n'),
-  options = list(numMultiStarts = 10)
+  parNames   = c('price', 'brand'),
+  randPars   = c(brand = 'n'),
+  options = list(
+    keepAllRuns = TRUE,
+    numMultiStarts = 10)
 )
 
 mxl_pref2 <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('price', 'hiland', 'yoplait', 'dannon'),
-  randPars   = c(
-    price = 'n', hiland = 'n', yoplait = 'n', dannon = 'n'),
-  options = list(numMultiStarts = 10)
+  parNames   = c('price', 'brand'),
+  randPars   = c(price = 'n', brand = 'n'),
+  options = list(
+    keepAllRuns = TRUE,
+    numMultiStarts = 10)
 )
 
 mxl_pref3 <- logitr(
   data       = yogurt_neg_price,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('price', 'hiland', 'yoplait', 'dannon'),
-  randPars   = c(
-    price = 'ln', hiland = 'n', yoplait = 'n', dannon = 'n'),
-   options = list(numMultiStarts = 10)
+  parNames   = c('price', 'brand'),
+  randPars   = c(price = 'ln', brand = 'n'),
+  options = list(
+    keepAllRuns = TRUE,
+    numMultiStarts = 10)
 )
 
 mxl_wtp <- logitr(
   data       = yogurt,
   choiceName = 'choice',
   obsIDName  = 'obsID',
-  parNames   = c('hiland', 'yoplait', 'dannon'),
+  parNames   = 'brand',
   priceName  = 'price',
-  randPars   = c(hiland = 'n', yoplait = 'n', dannon = 'n'),
+  randPars   = c(brand = 'n'),
   modelSpace = 'wtp',
   options    = list(
     keepAllRuns = TRUE,

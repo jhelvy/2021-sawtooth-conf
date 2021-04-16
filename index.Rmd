@@ -593,8 +593,6 @@ mnl_pref <- logitr(
 )
 
 summary(mnl_pref)
-
-getCoefTable(mnl_pref) #<<
 ```
 
 <center>
@@ -602,9 +600,10 @@ getCoefTable(mnl_pref) #<<
 </center>
 ]
 
-.rightcol55[.code50[
-```{r, echo=FALSE}
-getCoefTable(mnl_pref)
+.rightcol55[.code70[
+```{r}
+coefs <- getCoefTable(mnl_pref) #<<
+coefs
 ```
 ]]
 
@@ -661,23 +660,11 @@ summary(mnl_wtp$bestModel)
 
 ---
 
-class: center
+class: center, middle
 
-## **.red[Caution]**: WTP space models are not linear-in-parameters
+## **.red[Caution]**</br>
 
-</br>
-
-.leftcol[
-### Preference Space
-
-**Convex** log-likelihood function 🎉
-]
-
-.rightcol[
-### WTP Space
-
-**Non-convex** log-likelihood function 😔
-]
+## Log-likelihood function for WTP space models is</br>**non-convex**  😔
 
 ---
 
@@ -729,7 +716,7 @@ wtpCompare(mnl_pref, mnl_wtp, priceName = "price")
 
 # .center[Mixed logit in **Preference Space**]
 
-.leftcol55[
+.leftcol60[
 ```{r, eval=FALSE}
 library(logitr)
 
@@ -737,27 +724,55 @@ mxl_pref <- logitr(
   data       = yogurt,
   choiceName = "choice",
   obsIDName  = "obsID",
-  parNames   = c(
-    'price', 'brand'), 
-  randPars   = c( #<<
-    hiland = 'n', yoplait = 'n', dannon = 'n'), #<<
+  parNames   = c('price', 'brand'), 
+  randPars   = c(brand = 'n'), #<<
   options = list(numMultiStarts = 10)
 )
 
 summary(mxl_pref)
 ```
+]
 
+.rightcol40[
 <center>
-<img src="images/utilityPreference2.png" width=300>
+</br>
+<img src="images/utilityPreference2.png" width=400>
+</br>
+<img src="images/betaNormal.png" width=250>
 </center>
 ]
 
-.rightcol55[.code50[
-```{r, echo=FALSE}
-summary(mxl_pref)
-```
-]]
+---
 
+# .center[Mixed logit in **WTP Space**]
+
+.leftcol60[
+```{r, eval=FALSE}
+library(logitr)
+
+mxl_wtp <- logitr(
+  data       = yogurt,
+  choiceName = "choice",
+  obsIDName  = "obsID",
+  parNames   = c('hiland', 'yoplait', 'dannon'),
+  priceName  = 'price',
+  randPars   = c(brand = 'n'), #<<
+  modelSpace = 'wtp', #<<
+  options = list(numMultiStarts = 10)
+)
+
+summary(mxl_wtp)
+```
+]
+
+.rightcol40[
+<center>
+</br>
+<img src="images/utilityWtp2.png" width=400>
+</br>
+<img src="images/omegaNormal.png" width=250>
+</center>
+]
 
 
 
